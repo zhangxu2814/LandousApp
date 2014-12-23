@@ -45,7 +45,7 @@ public class StartActivity extends Activity {
 	}
 
 	private void redirectto() {
-		Intent intent = new Intent(this, WelcomeActivity
+		Intent intent = new Intent(this, MainActivity
 				.class);
 		startActivity(intent);
 		StartActivity.this.finish();

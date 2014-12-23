@@ -4,11 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import com.baidu.mobstat.f;
 import com.zykj.landous.R;
+import com.zykj.landous.Tools.ToastView;
 
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.provider.ContactsContract.CommonDataKinds.Im;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -16,13 +19,16 @@ import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ImageView.ScaleType;
+import android.widget.Toast;
 
-public class B0_IndexFragment extends Fragment {
+public class B0_IndexFragment extends Fragment implements OnClickListener {
+	// 轮播图 start
 	private ImageView[] imageViews;
 	private List<View> pageViews;
 	private ImageView imageView;
@@ -46,6 +52,40 @@ public class B0_IndexFragment extends Fragment {
 
 	};
 
+	// 轮播图 end
+	/**
+	 * 休闲食品
+	 */
+	private ImageView iv_leisurefood;
+	/**
+	 * 家庭清洁
+	 */
+	private ImageView iv_homecleaners;
+	/**
+	 * 个人洗护
+	 */
+	private ImageView iv_personalcare;
+	/**
+	 * 生活用品
+	 */
+	private ImageView iv_supplies;
+	/**
+	 * 酒水饮料
+	 */
+	private ImageView iv_beverages;
+	/**
+	 * 家用电器
+	 */
+	private ImageView iv_appliance;
+	/**
+	 * 粮油调味
+	 */
+	private ImageView iv_condiment;
+	/**
+	 * 办公礼品
+	 */
+	private ImageView iv_officegifts;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -61,6 +101,23 @@ public class B0_IndexFragment extends Fragment {
 	}
 
 	private void init(View view) {
+		iv_leisurefood = (ImageView) view.findViewById(R.id.iv_leisurefood);
+		iv_leisurefood.setOnClickListener(this);
+		iv_homecleaners = (ImageView) view.findViewById(R.id.iv_homecleaners);
+		iv_homecleaners.setOnClickListener(this);
+		iv_personalcare = (ImageView) view.findViewById(R.id.iv_personalcare);
+		iv_personalcare.setOnClickListener(this);
+		iv_supplies = (ImageView) view.findViewById(R.id.iv_supplies);
+		iv_supplies.setOnClickListener(this);
+		iv_beverages = (ImageView) view.findViewById(R.id.iv_beverages);
+		iv_beverages.setOnClickListener(this);
+		iv_appliance = (ImageView) view.findViewById(R.id.iv_appliance);
+		iv_appliance.setOnClickListener(this);
+		iv_condiment = (ImageView) view.findViewById(R.id.iv_condiment);
+		iv_condiment.setOnClickListener(this);
+		iv_officegifts = (ImageView) view.findViewById(R.id.iv_officegifts);
+		iv_officegifts.setOnClickListener(this);
+
 		// 从布局文件中获取ViewPager父容器
 		pagerLayout = (LinearLayout) view.findViewById(R.id.view_pager_content);
 		// 创建ViewPager
@@ -72,7 +129,7 @@ public class B0_IndexFragment extends Fragment {
 
 		// 根据屏幕信息设置ViewPager广告容器的宽高
 		adViewPager.setLayoutParams(new LayoutParams(dm.widthPixels,
-				dm.heightPixels * 2 /9));
+				dm.heightPixels * 2 / 9));
 
 		// 将ViewPager容器设置到布局文件父容器中
 		pagerLayout.addView(adViewPager);
@@ -227,6 +284,38 @@ public class B0_IndexFragment extends Fragment {
 		@Override
 		public boolean isViewFromObject(View view, Object object) {
 			return view == object;
+		}
+	}
+
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+		case R.id.iv_leisurefood:
+			Toast.makeText(getActivity(), "休闲食品", Toast.LENGTH_LONG).show();
+			break;
+		case R.id.iv_homecleaners:
+			Toast.makeText(getActivity(), "家庭清洁", Toast.LENGTH_LONG).show();
+			break;
+		case R.id.iv_personalcare:
+			Toast.makeText(getActivity(), "个人洗护", Toast.LENGTH_LONG).show();
+			break;
+		case R.id.iv_supplies:
+			Toast.makeText(getActivity(), "生活用品", Toast.LENGTH_LONG).show();
+			break;
+		case R.id.iv_beverages:
+			Toast.makeText(getActivity(), "酒水饮料", Toast.LENGTH_LONG).show();
+			break;
+		case R.id.iv_appliance:
+			Toast.makeText(getActivity(), "家用电器", Toast.LENGTH_LONG).show();
+			break;
+		case R.id.iv_condiment:
+			Toast.makeText(getActivity(), "粮油调味", Toast.LENGTH_LONG).show();
+			break;
+		case R.id.iv_officegifts:
+			Toast.makeText(getActivity(), "办公礼品", Toast.LENGTH_LONG).show();
+			break;
+		default:
+			break;
 		}
 	}
 }
