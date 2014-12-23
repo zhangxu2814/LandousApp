@@ -9,8 +9,6 @@ import android.os.Handler;
 import android.os.Message;
 
 public class BaseActivity extends Activity implements Handler.Callback {
-	public Handler mHandler;
-
 	public BaseActivity() {
 
 	}
@@ -19,7 +17,6 @@ public class BaseActivity extends Activity implements Handler.Callback {
 	protected void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);
-		mHandler = new Handler(this);
 		ActivityManagerModel.addLiveActivity(this);
 	}
 

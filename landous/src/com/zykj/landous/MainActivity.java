@@ -1,7 +1,6 @@
 package com.zykj.landous;
 
 import com.baidu.frontia.Frontia;
-import com.zykj.landous.fragment.TabsFragment;
 import com.zykj.landous.push.PushActivity;
 import android.app.Activity;
 import android.app.ActionBar;
@@ -23,7 +22,6 @@ public class MainActivity extends FragmentActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		Frontia.init(this.getApplicationContext(), "iG2ffdkYaq8kIjrSfvjMcUrf");
-		// Intent it = new Intent(getApplicationContext(), TabsFragment.class);
-		// startActivity(it);
+		
 	}
 }
