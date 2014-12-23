@@ -15,11 +15,11 @@ import android.util.Log;
 import com.baidu.frontia.api.FrontiaPushMessageReceiver;
 
 /**
- * Push消息处理receiver。请编写您需要的回调函数， 一般来说： onBind是必须的，用来处理startWork返回值；
- * onMessage用来接收透传消息； onSetTags、onDelTags、onListTags是tag相关操作的回调；
- * onNotificationClicked在通知被点击时回调； onUnbind是stopWork接口的返回值回调
+ * Push娑����澶����receiver���璇风�������ㄩ��瑕�������璋���芥�帮�� 涓������ヨ�达�� onBind���蹇�椤荤��锛���ㄦ�ュ�����startWork杩������硷��
+ * onMessage��ㄦ�ユ�ユ�堕��浼�娑����锛� onSetTags���onDelTags���onListTags���tag��稿�虫��浣�������璋�锛�
+ * onNotificationClicked��ㄩ����ヨ����瑰�绘�跺��璋�锛� onUnbind���stopWork��ュ�ｇ��杩������煎��璋�
  * 
- * 返回值中的errorCode，解释如下： 
+ * 杩������间腑���errorCode锛�瑙ｉ��濡�涓�锛� 
  *  0 - Success
  *  10001 - Network Problem
  *  30600 - Internal Server Error
@@ -33,7 +33,7 @@ import com.baidu.frontia.api.FrontiaPushMessageReceiver;
  *  30608 - Bind Relation Not Found 
  *  30609 - Bind Number Too Many
  * 
- * 当您遇到以上返回错误时，如果解释不了您的问题，请用同一请求的返回值requestId和errorCode联系我们追查问题。
+ * 褰���ㄩ����颁互涓�杩�������璇���讹��濡����瑙ｉ��涓�浜���ㄧ�����棰�锛�璇风�ㄥ��涓�璇锋�����杩�������requestId���errorCode���绯绘��浠�杩芥�ラ��棰����
  * 
  */
 public class MyPushMessageReceiver extends FrontiaPushMessageReceiver {
@@ -42,22 +42,22 @@ public class MyPushMessageReceiver extends FrontiaPushMessageReceiver {
             .getSimpleName();
 
     /**
-     * 调用PushManager.startWork后，sdk将对push
-     * server发起绑定请求，这个过程是异步的。绑定请求的结果通过onBind返回。 如果您需要用单播推送，需要把这里获取的channel
-     * id和user id上传到应用server中，再调用server接口用channel id和user id给单个手机或者用户推送。
+     * 璋����PushManager.startWork���锛�sdk灏�瀵�push
+     * server���璧风��瀹�璇锋��锛�杩�涓�杩�绋����寮�姝ョ�����缁�瀹�璇锋�����缁�������杩�onBind杩������� 濡������ㄩ��瑕���ㄥ�������ㄩ��锛����瑕����杩������峰�����channel
+     * id���user id涓�浼���板�����server涓�锛����璋����server��ュ�ｇ��channel id���user id缁����涓������烘�������ㄦ�锋�ㄩ�����
      * 
      * @param context
-     *            BroadcastReceiver的执行Context
+     *            BroadcastReceiver�����ц��Context
      * @param errorCode
-     *            绑定接口返回值，0 - 成功
+     *            缁�瀹���ュ�ｈ�������硷��0 - ������
      * @param appid
-     *            应用id。errorCode非0时为null
+     *            搴����id���errorCode���0��朵负null
      * @param userId
-     *            应用user id。errorCode非0时为null
+     *            搴����user id���errorCode���0��朵负null
      * @param channelId
-     *            应用channel id。errorCode非0时为null
+     *            搴����channel id���errorCode���0��朵负null
      * @param requestId
-     *            向服务端发起的请求id。在追查问题时有用；
+     *            ��������＄�����璧风��璇锋��id�����ㄨ拷��ラ��棰���舵�����锛�
      * @return none
      */
     @Override
@@ -68,32 +68,32 @@ public class MyPushMessageReceiver extends FrontiaPushMessageReceiver {
                 + " requestId=" + requestId;
         Log.d(TAG, responseString);
 
-        // 绑定成功，设置已绑定flag，可以有效的减少不必要的绑定请求
+        // 缁�瀹�������锛�璁剧疆宸茬��瀹�flag锛����浠ユ�����������灏�涓�蹇�瑕����缁�瀹�璇锋��
         if (errorCode == 0) {
 //            Utils.setBind(context, true);
         }
-        // Demo更新界面展示代码，应用请在这里加入自己的处理逻辑
+        // Demo��存�扮����㈠��绀轰唬���锛�搴���ㄨ�峰�ㄨ����������ヨ��宸辩��澶������昏��
         updateContent(context, responseString);
     }
 
     /**
-     * 接收透传消息的函数。
+     * ��ユ�堕��浼�娑���������芥�般��
      * 
      * @param context
-     *            上下文
+     *            涓�涓����
      * @param message
-     *            推送的消息
+     *            ��ㄩ�����娑����
      * @param customContentString
-     *            自定义内容,为空或者json字符串
+     *            ���瀹�涔����瀹�,涓虹┖������json瀛�绗�涓�
      */
     @Override
     public void onMessage(Context context, String message,
             String customContentString) {
-        String messageString = "透传消息 message=\"" + message
+        String messageString = "���浼�娑���� message=\"" + message
                 + "\" customContentString=" + customContentString;
         Log.d(TAG, messageString);
 
-        // 自定义内容获取方式，mykey和myvalue对应透传消息推送时自定义内容中设置的键和值
+        // ���瀹�涔����瀹硅�峰����瑰��锛�mykey���myvalue瀵瑰�����浼�娑������ㄩ����惰��瀹�涔����瀹逛腑璁剧疆������������
         if (!TextUtils.isEmpty(customContentString)) {
             JSONObject customJson = null;
             try {
@@ -108,30 +108,30 @@ public class MyPushMessageReceiver extends FrontiaPushMessageReceiver {
             }
         }
 
-        // Demo更新界面展示代码，应用请在这里加入自己的处理逻辑
+        // Demo��存�扮����㈠��绀轰唬���锛�搴���ㄨ�峰�ㄨ����������ヨ��宸辩��澶������昏��
         updateContent(context, messageString);
     }
 
     /**
-     * 接收通知点击的函数。注：推送通知被用户点击前，应用无法通过接口获取通知的内容。
+     * ��ユ�堕����ョ�瑰�荤����芥�般��娉�锛���ㄩ�������ヨ����ㄦ�风�瑰�诲��锛�搴���ㄦ��娉����杩���ュ�ｈ�峰�������ョ�����瀹广��
      * 
      * @param context
-     *            上下文
+     *            涓�涓����
      * @param title
-     *            推送的通知的标题
+     *            ��ㄩ����������ョ�����棰�
      * @param description
-     *            推送的通知的描述
+     *            ��ㄩ����������ョ�����杩�
      * @param customContentString
-     *            自定义内容，为空或者json字符串
+     *            ���瀹�涔����瀹癸��涓虹┖������json瀛�绗�涓�
      */
     @Override
     public void onNotificationClicked(Context context, String title,
             String description, String customContentString) {
-        String notifyString = "通知点击 title=\"" + title + "\" description=\""
+        String notifyString = "�����ョ�瑰�� title=\"" + title + "\" description=\""
                 + description + "\" customContent=" + customContentString;
         Log.d(TAG, notifyString);
 
-        // 自定义内容获取方式，mykey和myvalue对应通知推送时自定义内容中设置的键和值
+        // ���瀹�涔����瀹硅�峰����瑰��锛�mykey���myvalue瀵瑰�������ユ�ㄩ����惰��瀹�涔����瀹逛腑璁剧疆������������
         if (!TextUtils.isEmpty(customContentString)) {
             JSONObject customJson = null;
             try {
@@ -146,23 +146,23 @@ public class MyPushMessageReceiver extends FrontiaPushMessageReceiver {
             }
         }
 
-        // Demo更新界面展示代码，应用请在这里加入自己的处理逻辑
+        // Demo��存�扮����㈠��绀轰唬���锛�搴���ㄨ�峰�ㄨ����������ヨ��宸辩��澶������昏��
         updateContent(context, notifyString);
     }
 
     /**
-     * setTags() 的回调函数。
+     * setTags() ������璋���芥�般��
      * 
      * @param context
-     *            上下文
+     *            涓�涓����
      * @param errorCode
-     *            错误码。0表示某些tag已经设置成功；非0表示所有tag的设置均失败。
+     *            ���璇�������0琛ㄧず���浜�tag宸茬��璁剧疆������锛����0琛ㄧず������tag���璁剧疆���澶辫触���
      * @param successTags
-     *            设置成功的tag
+     *            璁剧疆���������tag
      * @param failTags
-     *            设置失败的tag
+     *            璁剧疆澶辫触���tag
      * @param requestId
-     *            分配给对云推送的请求的id
+     *            ������缁�瀵逛����ㄩ�����璇锋�����id
      */
     @Override
     public void onSetTags(Context context, int errorCode,
@@ -172,23 +172,23 @@ public class MyPushMessageReceiver extends FrontiaPushMessageReceiver {
                 + " requestId=" + requestId;
         Log.d(TAG, responseString);
 
-        // Demo更新界面展示代码，应用请在这里加入自己的处理逻辑
+        // Demo��存�扮����㈠��绀轰唬���锛�搴���ㄨ�峰�ㄨ����������ヨ��宸辩��澶������昏��
         updateContent(context, responseString);
     }
 
     /**
-     * delTags() 的回调函数。
+     * delTags() ������璋���芥�般��
      * 
      * @param context
-     *            上下文
+     *            涓�涓����
      * @param errorCode
-     *            错误码。0表示某些tag已经删除成功；非0表示所有tag均删除失败。
+     *            ���璇�������0琛ㄧず���浜�tag宸茬�������ゆ�����锛����0琛ㄧず������tag��������ゅけ璐ャ��
      * @param successTags
-     *            成功删除的tag
+     *            �����������ょ��tag
      * @param failTags
-     *            删除失败的tag
+     *            �����ゅけ璐ョ��tag
      * @param requestId
-     *            分配给对云推送的请求的id
+     *            ������缁�瀵逛����ㄩ�����璇锋�����id
      */
     @Override
     public void onDelTags(Context context, int errorCode,
@@ -198,21 +198,21 @@ public class MyPushMessageReceiver extends FrontiaPushMessageReceiver {
                 + " requestId=" + requestId;
         Log.d(TAG, responseString);
 
-        // Demo更新界面展示代码，应用请在这里加入自己的处理逻辑
+        // Demo��存�扮����㈠��绀轰唬���锛�搴���ㄨ�峰�ㄨ����������ヨ��宸辩��澶������昏��
         updateContent(context, responseString);
     }
 
     /**
-     * listTags() 的回调函数。
+     * listTags() ������璋���芥�般��
      * 
      * @param context
-     *            上下文
+     *            涓�涓����
      * @param errorCode
-     *            错误码。0表示列举tag成功；非0表示失败。
+     *            ���璇�������0琛ㄧず���涓�tag������锛����0琛ㄧず澶辫触���
      * @param tags
-     *            当前应用设置的所有tag。
+     *            褰����搴���ㄨ�剧疆���������tag���
      * @param requestId
-     *            分配给对云推送的请求的id
+     *            ������缁�瀵逛����ㄩ�����璇锋�����id
      */
     @Override
     public void onListTags(Context context, int errorCode, List<String> tags,
@@ -221,19 +221,19 @@ public class MyPushMessageReceiver extends FrontiaPushMessageReceiver {
                 + tags;
         Log.d(TAG, responseString);
 
-        // Demo更新界面展示代码，应用请在这里加入自己的处理逻辑
+        // Demo��存�扮����㈠��绀轰唬���锛�搴���ㄨ�峰�ㄨ����������ヨ��宸辩��澶������昏��
         updateContent(context, responseString);
     }
 
     /**
-     * PushManager.stopWork() 的回调函数。
+     * PushManager.stopWork() ������璋���芥�般��
      * 
      * @param context
-     *            上下文
+     *            涓�涓����
      * @param errorCode
-     *            错误码。0表示从云推送解绑定成功；非0表示失败。
+     *            ���璇�������0琛ㄧず浠�浜���ㄩ��瑙ｇ��瀹�������锛����0琛ㄧず澶辫触���
      * @param requestId
-     *            分配给对云推送的请求的id
+     *            ������缁�瀵逛����ㄩ�����璇锋�����id
      */
     @Override
     public void onUnbind(Context context, int errorCode, String requestId) {
@@ -241,11 +241,11 @@ public class MyPushMessageReceiver extends FrontiaPushMessageReceiver {
                 + " requestId = " + requestId;
         Log.d(TAG, responseString);
 
-        // 解绑定成功，设置未绑定flag，
+        // 瑙ｇ��瀹�������锛�璁剧疆���缁�瀹�flag锛�
         if (errorCode == 0) {
 //            Utils.setBind(context, false);
         }
-        // Demo更新界面展示代码，应用请在这里加入自己的处理逻辑
+        // Demo��存�扮����㈠��绀轰唬���锛�搴���ㄨ�峰�ㄨ����������ヨ��宸辩��澶������昏��
         updateContent(context, responseString);
     }
 
@@ -263,10 +263,10 @@ public class MyPushMessageReceiver extends FrontiaPushMessageReceiver {
 
 //        Utils.logStringCache = logText;
 
-        Intent intent = new Intent();
-        intent.setClass(context.getApplicationContext(), PushActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.getApplicationContext().startActivity(intent);
+//        Intent intent = new Intent();
+//        intent.setClass(context.getApplicationContext(), PushActivity.class);
+//        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//        context.getApplicationContext().startActivity(intent);
     }
 
 }

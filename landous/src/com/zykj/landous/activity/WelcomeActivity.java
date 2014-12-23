@@ -106,7 +106,7 @@ public class WelcomeActivity extends BaseActivity implements OnGestureListener, 
 			if(pager_num == 5) {
 				Intent intent = new Intent(getApplicationContext(),MainActivity.class);
 				startActivity(intent);
-				finish();
+				WelcomeActivity.this.finish();
 				editor.putBoolean("isFirstRun", false);
 	            editor.commit();
 			}
@@ -132,7 +132,7 @@ public class WelcomeActivity extends BaseActivity implements OnGestureListener, 
     void initLayout()
     {
         DisplayMetrics dm = new DisplayMetrics();
-        //取得窗口属性
+        //���寰�绐���ｅ�����
         this.getWindowManager().getDefaultDisplay().getMetrics(dm);
         backgoundWidth = dm.widthPixels*5;
         ViewGroup.LayoutParams layoutParams;

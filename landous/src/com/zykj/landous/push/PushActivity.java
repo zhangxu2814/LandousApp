@@ -19,12 +19,12 @@ public class PushActivity extends Activity {
 		// helloworld
 		PushManager.startWork(getApplicationContext(),
 				PushConstants.LOGIN_TYPE_API_KEY, "DpzGAu7CGC8Ive01Epb28giz");
-		ToastView toastView = new ToastView(getApplicationContext(),
-				"自定义toast测试");
-		toastView.setGravity(Gravity.CENTER, 0, 0);
-		toastView.show();
-		// Push: 如果想基于地理位置推送，可以打开支持地理位置的推送的开关
-		// PushManager.enableLbs(getApplicationContext());//这个测试失败
+//		ToastView toastView = new ToastView(getApplicationContext(),
+//				"���瀹�涔�toast娴�璇�");
+//		toastView.setGravity(Gravity.CENTER, 0, 0);
+//		toastView.show();
+		// Push: 濡������冲�轰����扮��浣�缃���ㄩ��锛����浠ユ��寮���������扮��浣�缃������ㄩ�����寮����
+		// PushManager.enableLbs(getApplicationContext());//杩�涓�娴�璇�澶辫触
 		// Resources resource = this.getResources();
 		// String pkgName = this.getPackageName();
 		// CustomPushNotificationBuilder cBuilder = new

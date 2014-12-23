@@ -20,7 +20,7 @@ public class StartActivity extends Activity {
 		final View startView = View.inflate(this, R.layout.activity_start, null);
 		setContentView(startView);
 		context = this;
-		// 渐变
+		// 娓����
 		AlphaAnimation aa = new AlphaAnimation(0.3f, 1.0f);
 		aa.setDuration(2000);
 		startView.setAnimation(aa);
@@ -48,6 +48,6 @@ public class StartActivity extends Activity {
 		Intent intent = new Intent(this, WelcomeActivity
 				.class);
 		startActivity(intent);
-		finish();
+		StartActivity.this.finish();
 	}
 }
