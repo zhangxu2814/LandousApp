@@ -6,6 +6,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import com.baidu.mobstat.f;
 import com.zykj.landous.R;
+import com.zykj.landous.Tools.Share;
 import com.zykj.landous.Tools.ToastView;
 
 import android.os.Bundle;
@@ -85,7 +86,15 @@ public class B0_IndexFragment extends Fragment implements OnClickListener {
 	 * 办公礼品
 	 */
 	private ImageView iv_officegifts;
-
+//	/**
+//	 * 分享按钮 
+//	 */
+//	private ImageView iv_share;
+	
+/**
+ * 分享
+ */
+	private LinearLayout ll_share;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -117,6 +126,10 @@ public class B0_IndexFragment extends Fragment implements OnClickListener {
 		iv_condiment.setOnClickListener(this);
 		iv_officegifts = (ImageView) view.findViewById(R.id.iv_officegifts);
 		iv_officegifts.setOnClickListener(this);
+//		iv_share=(ImageView)view.findViewById(R.id.iv_share);
+//		iv_share.setOnClickListener(this);
+		ll_share=(LinearLayout)view.findViewById(R.id.ll_share);
+		ll_share.setOnClickListener(this);
 
 		// 从布局文件中获取ViewPager父容器
 		pagerLayout = (LinearLayout) view.findViewById(R.id.view_pager_content);
@@ -230,15 +243,17 @@ public class B0_IndexFragment extends Fragment implements OnClickListener {
 		img[0] = new ImageView(getActivity());
 		img[0].setImageResource(R.drawable.ad1);
 		img[1] = new ImageView(getActivity());
-		img[1].setImageResource(R.drawable.ad2);
+		img[1].setImageResource(R.drawable.ad3);
 		img[2] = new ImageView(getActivity());
-		img[2].setImageResource(R.drawable.ad2);
-		pageViews.add(img[0]);
+		img[2].setImageResource(R.drawable.ad0);
+
 		img[0].setScaleType(ScaleType.FIT_XY);
 		img[1].setScaleType(ScaleType.FIT_XY);
 		img[2].setScaleType(ScaleType.FIT_XY);
-		pageViews.add(img[1]);
 		pageViews.add(img[2]);
+		pageViews.add(img[0]);
+		pageViews.add(img[1]);
+
 		adapter = new AdPageAdapter(pageViews);
 
 	}
@@ -313,6 +328,10 @@ public class B0_IndexFragment extends Fragment implements OnClickListener {
 			break;
 		case R.id.iv_officegifts:
 			Toast.makeText(getActivity(), "办公礼品", Toast.LENGTH_LONG).show();
+			break;
+		case R.id.ll_share:
+			Share mShare=new Share(getActivity());
+			mShare.show();
 			break;
 		default:
 			break;
