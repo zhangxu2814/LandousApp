@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/colorlayout"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="#fff" >
+
+    <ImageView
+        android:id="@+id/imageview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dip"
+        android:layout_marginTop="5dip" />
+
+    <TextView
+        android:id="@+id/textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="8dip"
+        android:layout_marginTop="2dip"
+        android:layout_toRightOf="@+id/imageview"
+        android:text="aaaaa"
+        android:textSize="16dip" />
+
+    <TextView
+        android:id="@+id/txt_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textview"
+        android:layout_below="@+id/textview"
+        android:layout_marginLeft="8dip"
+        android:textSize="16dip" />
+    <!-- android:background="@drawable/selector"  自定义listview 样式 -->
+
+</RelativeLayout>

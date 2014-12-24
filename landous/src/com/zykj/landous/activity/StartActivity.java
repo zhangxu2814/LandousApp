@@ -22,7 +22,7 @@ public class StartActivity extends Activity {
 		context = this;
 		// 娓����
 		AlphaAnimation aa = new AlphaAnimation(0.3f, 1.0f);
-		aa.setDuration(2000);
+		aa.setDuration(100);
 		startView.setAnimation(aa);
 		aa.setAnimationListener(new AnimationListener() {
 

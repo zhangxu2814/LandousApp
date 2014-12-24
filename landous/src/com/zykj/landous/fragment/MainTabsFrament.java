@@ -1,6 +1,7 @@
 package com.zykj.landous.fragment;
 
 import com.zykj.landous.R;
+import com.zykj.landous.activity.ClassifyActivity;
 
 import android.annotation.TargetApi;
 import android.content.Intent;
@@ -28,6 +29,7 @@ public class MainTabsFrament extends Fragment {
 	private static LinearLayout shopping_cart_num_bg;
 
 	B0_IndexFragment homeFragment;
+	B0_Classify classifyFragment;
 
 	/*
 	 * (non-Javadoc)
@@ -47,7 +49,7 @@ public class MainTabsFrament extends Fragment {
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	public void onActivityCreated(Bundle paramBundle) {
 		super.onActivityCreated(paramBundle);
-//		setRetainInstance(true);
+		// setRetainInstance(true);
 	}
 
 	void init(View mainView) {
@@ -115,27 +117,30 @@ public class MainTabsFrament extends Fragment {
 
 			this.tab_one.setImageResource(R.drawable.footer_home_active_icon);
 			this.tab_two.setImageResource(R.drawable.footer_sort_icon);
-			this.tab_three
-					.setImageResource(R.drawable.footer_shop_icon);
-			this.tab_four.setImageResource(R.drawable.footer_shopping_cart_icon);
+			this.tab_three.setImageResource(R.drawable.footer_shop_icon);
+			this.tab_four
+					.setImageResource(R.drawable.footer_shopping_cart_icon);
 			this.tab_five.setImageResource(R.drawable.footer_user_icon);
 
 		} else if (tabName == "tab_two") {
+//			Intent it = new Intent(getActivity(), ClassifyActivity.class);
+//			startActivity(it);
 
-			homeFragment = new B0_IndexFragment();
-
-			FragmentTransaction localFragmentTransaction = getFragmentManager()
-					.beginTransaction();
-			localFragmentTransaction.replace(R.id.fragment_container,
-					homeFragment, "tab_two");
-			localFragmentTransaction.commit();
-
-			this.tab_one.setImageResource(R.drawable.footer_home_icon);
-			this.tab_two.setImageResource(R.drawable.footer_sort_activity_icon);
-			this.tab_three
-					.setImageResource(R.drawable.footer_shop_icon);
-			this.tab_four.setImageResource(R.drawable.footer_shopping_cart_icon);
-			this.tab_five.setImageResource(R.drawable.footer_user_icon);
+			 classifyFragment = new B0_Classify();
+			
+			 FragmentTransaction localFragmentTransaction =
+			 getFragmentManager()
+			 .beginTransaction();
+			 localFragmentTransaction.replace(R.id.fragment_container,
+			 classifyFragment, "tab_two");
+			 localFragmentTransaction.commit();
+			
+			 this.tab_one.setImageResource(R.drawable.footer_home_icon);
+			 this.tab_two.setImageResource(R.drawable.footer_sort_activity_icon);
+			 this.tab_three.setImageResource(R.drawable.footer_shop_icon);
+			 this.tab_four
+			 .setImageResource(R.drawable.footer_shopping_cart_icon);
+			 this.tab_five.setImageResource(R.drawable.footer_user_icon);
 
 		} else if (tabName == "tab_three") {
 			homeFragment = new B0_IndexFragment();
@@ -147,9 +152,9 @@ public class MainTabsFrament extends Fragment {
 
 			this.tab_one.setImageResource(R.drawable.footer_home_icon);
 			this.tab_two.setImageResource(R.drawable.footer_sort_icon);
-			this.tab_three
-					.setImageResource(R.drawable.footer_shop_active_icon);
-			this.tab_four.setImageResource(R.drawable.footer_shopping_cart_icon);
+			this.tab_three.setImageResource(R.drawable.footer_shop_active_icon);
+			this.tab_four
+					.setImageResource(R.drawable.footer_shopping_cart_icon);
 			this.tab_five.setImageResource(R.drawable.footer_user_icon);
 		} else if (tabName == "tab_four") {
 
@@ -162,9 +167,9 @@ public class MainTabsFrament extends Fragment {
 
 			this.tab_one.setImageResource(R.drawable.footer_home_icon);
 			this.tab_two.setImageResource(R.drawable.footer_sort_icon);
-			this.tab_three
-					.setImageResource(R.drawable.footer_shop_icon);
-			this.tab_four.setImageResource(R.drawable.footer_shopping_cart_active_icon);
+			this.tab_three.setImageResource(R.drawable.footer_shop_icon);
+			this.tab_four
+					.setImageResource(R.drawable.footer_shopping_cart_active_icon);
 			this.tab_five.setImageResource(R.drawable.footer_user_icon);
 
 		} else if (tabName == "tab_five") {
@@ -177,9 +182,9 @@ public class MainTabsFrament extends Fragment {
 
 			this.tab_one.setImageResource(R.drawable.footer_home_icon);
 			this.tab_two.setImageResource(R.drawable.footer_sort_icon);
-			this.tab_three
-					.setImageResource(R.drawable.footer_shop_icon);
-			this.tab_four.setImageResource(R.drawable.footer_shopping_cart_icon);
+			this.tab_three.setImageResource(R.drawable.footer_shop_icon);
+			this.tab_four
+					.setImageResource(R.drawable.footer_shopping_cart_icon);
 			this.tab_five.setImageResource(R.drawable.footer_user_active_icon);
 		}
 	}
@@ -189,47 +194,47 @@ public class MainTabsFrament extends Fragment {
 
 		super.onActivityResult(requestCode, resultCode, data);
 
-//		if (requestCode == 1) {
-//			if (data != null) {
-//				if (null == homeFragment) {
-//					homeFragment = new B0_IndexFragment();
-//				}
-//
-//				FragmentTransaction localFragmentTransaction = getFragmentManager()
-//						.beginTransaction();
-//				localFragmentTransaction.replace(R.id.fragment_container,
-//						homeFragment, "tab_four");
-//				localFragmentTransaction.commit();
-//
-//				this.tab_one.setImageResource(R.drawable.footer_home_icon);
-//				this.tab_two.setImageResource(R.drawable.footer_sort_icon);
-//				this.tab_three
-//						.setImageResource(R.drawable.footer_shopping_cart_icon);
-//				this.tab_four
-//						.setImageResource(R.drawable.footer_user_active_icon);
-//
-//			}
-//		} else if (requestCode == 2) {
-//			if (null != data) {
-//				if (null == homeFragment) {
-//					homeFragment = new B0_IndexFragment();
-//				}
-//
-//				FragmentTransaction localFragmentTransaction = getFragmentManager()
-//						.beginTransaction();
-//				localFragmentTransaction.replace(R.id.fragment_container,
-//						homeFragment, "tab_three");
-//				localFragmentTransaction.commit();
-//
-//				this.tab_one.setImageResource(R.drawable.footer_home_icon);
-//				this.tab_two.setImageResource(R.drawable.footer_sort_icon);
-//				this.tab_three
-//						.setImageResource(R.drawable.footer_shopping_cart_active_icon);
-//				this.tab_four.setImageResource(R.drawable.footer_user_icon);
-//
-//			}
-//
-//		}
+		// if (requestCode == 1) {
+		// if (data != null) {
+		// if (null == homeFragment) {
+		// homeFragment = new B0_IndexFragment();
+		// }
+		//
+		// FragmentTransaction localFragmentTransaction = getFragmentManager()
+		// .beginTransaction();
+		// localFragmentTransaction.replace(R.id.fragment_container,
+		// homeFragment, "tab_four");
+		// localFragmentTransaction.commit();
+		//
+		// this.tab_one.setImageResource(R.drawable.footer_home_icon);
+		// this.tab_two.setImageResource(R.drawable.footer_sort_icon);
+		// this.tab_three
+		// .setImageResource(R.drawable.footer_shopping_cart_icon);
+		// this.tab_four
+		// .setImageResource(R.drawable.footer_user_active_icon);
+		//
+		// }
+		// } else if (requestCode == 2) {
+		// if (null != data) {
+		// if (null == homeFragment) {
+		// homeFragment = new B0_IndexFragment();
+		// }
+		//
+		// FragmentTransaction localFragmentTransaction = getFragmentManager()
+		// .beginTransaction();
+		// localFragmentTransaction.replace(R.id.fragment_container,
+		// homeFragment, "tab_three");
+		// localFragmentTransaction.commit();
+		//
+		// this.tab_one.setImageResource(R.drawable.footer_home_icon);
+		// this.tab_two.setImageResource(R.drawable.footer_sort_icon);
+		// this.tab_three
+		// .setImageResource(R.drawable.footer_shopping_cart_active_icon);
+		// this.tab_four.setImageResource(R.drawable.footer_user_icon);
+		//
+		// }
+		//
+		// }
 	}
 
 	@Override

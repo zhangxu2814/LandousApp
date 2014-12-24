@@ -8,6 +8,7 @@
     <drawable name="color_b">#44aaaaaa</drawable>
     <drawable name="color_a">#00000000</drawable>
 
+    <color name="white">#ffffffff</color>
     <color name="color_orange">#FF7C00</color>
     <color name="color_gray">#F4F4F4</color>
 

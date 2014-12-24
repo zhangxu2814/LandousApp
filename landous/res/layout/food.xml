@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+        >
+    <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="20dp"
+            android:background="@color/white"
+            android:layoutAnimation="@anim/food_anim_layout">
+
+        <!--background:background="@drawable/mid_filter_bg2"-->
+
+        <com.zykj.landous.classify.AnimationSildingLayout
+                android:id="@+id/main_slayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+
+                >
+            <ListView
+                    android:id="@+id/list"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+
+                    android:choiceMode="singleChoice"
+                    android:scrollbars="none"
+                    android:divider="@drawable/listitem_divide"
+                    android:listSelector="#00000000"
+
+                    >
+            </ListView>
+            <RelativeLayout
+                    android:id="@+id/parentView_layout"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:paddingLeft="@dimen/leftlist_img_width" >
+                <ImageView android:id="@+id/img_arrow"
+                           android:background="@drawable/lib_phone_charge_back"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:layout_alignParentLeft="true">
+
+                </ImageView>
+                <ListView
+                        android:id="@+id/list1"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/logistics_track_list_bg_c"
+
+                        android:visibility="visible"
+                        android:layout_toRightOf="@+id/img_arrow">
+
+                </ListView>
+            </RelativeLayout>
+
+        </com.zykj.landous.classify.AnimationSildingLayout>
+
+
+    </RelativeLayout>
+</LinearLayout>
