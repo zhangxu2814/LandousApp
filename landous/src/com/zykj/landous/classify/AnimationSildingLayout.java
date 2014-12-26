@@ -26,45 +26,45 @@ import android.widget.Scroller;
 import com.zykj.landous.R;
 
 /**
- * ×Ô¶¨Òå¿ÉÒÔ»¬¶¯µÄRelativeLayout,´¦Àí¾©¶«·ÖÀàµÄ»¬¶¯Ğ§¹û
- * ÓÃ¶¯»­ÊµÏÖ¹ö¶¯Ğ§¹û
+ * è‡ªå®šä¹‰å¯ä»¥æ»‘åŠ¨çš„RelativeLayout,å¤„ç†äº¬ä¸œåˆ†ç±»çš„æ»‘åŠ¨æ•ˆæœ
+ * ç”¨åŠ¨ç”»å®ç°æ»šåŠ¨æ•ˆæœ
  *
  * @author linyanjun
  * @blog http://blog.csdn.net/xiaolinxx
  */
 public class AnimationSildingLayout extends RelativeLayout {
     /**
-     * SildingLayout ²¼¾ÖµÄ¸¸²¼¾Ö
+     * SildingLayout å¸ƒå±€çš„çˆ¶å¸ƒå±€
      */
     private ViewGroup parentView;
     private ListView leftView;
-    private ListView rightView;
+    private ListView middleView;
     /**
-     * »¬¶¯µÄ×îĞ¡¾àÀë
+     * æ»‘åŠ¨çš„æœ€å°è·ç¦»
      */
     private int mTouchSlop;
     /**
-     * °´ÏÂµãµÄX×ø±ê
+     * æŒ‰ä¸‹ç‚¹çš„Xåæ ‡
      */
     private int downX;
     /**
-     * °´ÏÂµãµÄY×ø±ê
+     * æŒ‰ä¸‹ç‚¹çš„Yåæ ‡
      */
     private int downY;
     /**
-     * ÁÙÊ±´æ´¢X×ø±ê
+     * ä¸´æ—¶å­˜å‚¨Xåæ ‡
      */
     private int tempX;
     /**
-     * ÁÙÊ±´æ´¢Ê±¼ä
+     * ä¸´æ—¶å­˜å‚¨æ—¶é—´
      */
     private long tempTime;
     /**
-     * »¬¶¯Àà
+     * æ»‘åŠ¨ç±»
      */
     private Scroller mScroller;
     /**
-     * SildingLayoutµÄ¿í¶È
+     * SildingLayoutçš„å®½åº¦
      */
     private int viewWidth;
 
@@ -73,7 +73,7 @@ public class AnimationSildingLayout extends RelativeLayout {
     private boolean isSilding;
 
     /**
-     * ËÙ¶È×·×Ù¶ÔÏó
+     * é€Ÿåº¦è¿½è¸ªå¯¹è±¡
      */
     private VelocityTracker velocityTracker;
     private static final int SNAP_VELOCITY = 300;
@@ -85,10 +85,10 @@ public class AnimationSildingLayout extends RelativeLayout {
 
     private int leftViewTotalMove;
     /**
-     * ¼ÇÂ¼Ñ¡ÖĞµÄitemÎ»ÖÃ
+     * è®°å½•é€‰ä¸­çš„itemä½ç½®
      */
     private int selectItemPosition;
-    //¼ıÍ·Í¼±ê
+    //ç®­å¤´å›¾æ ‡
     private ImageView arrowView;
 
     public AnimationSildingLayout(Context context, AttributeSet attrs) {
@@ -106,10 +106,10 @@ public class AnimationSildingLayout extends RelativeLayout {
 
     }
 
-    public void initLayout(final ListView leftView,ListView rightView){
+    public void initLayout(final ListView leftView,ListView middleView){
         this.leftView=leftView;
-        this.rightView=rightView;
-        this.parentView= (ViewGroup) rightView.getParent();
+        this.middleView=middleView;
+        this.parentView= (ViewGroup) middleView.getParent();
         parentView.setVisibility(INVISIBLE);
         arrowView= (ImageView) findViewById(R.id.img_arrow);
         leftView.setOnScrollListener(new AbsListView.OnScrollListener() {
@@ -148,7 +148,7 @@ public class AnimationSildingLayout extends RelativeLayout {
 
 
     /**
-     * ÊÂ¼şÀ¹½Ø²Ù×÷
+     * äº‹ä»¶æ‹¦æˆªæ“ä½œ
      */
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
@@ -163,7 +163,7 @@ public class AnimationSildingLayout extends RelativeLayout {
             case MotionEvent.ACTION_MOVE:
 
                 int moveX = (int) ev.getRawX();
-                //Âú×ã´ËÌõ¼şÆÁ±ÎSildingLayoutÀïÃæ×ÓÀàµÄtouchÊÂ¼ş
+                //æ»¡è¶³æ­¤æ¡ä»¶å±è”½SildingLayouté‡Œé¢å­ç±»çš„touchäº‹ä»¶
                 if ((Math.abs(moveX - downX) > mTouchSlop
                         && Math.abs((int) ev.getRawY() - downY) < mTouchSlop)) {
                     return true;
@@ -189,7 +189,7 @@ public class AnimationSildingLayout extends RelativeLayout {
                 if(parentView.getVisibility()==View.INVISIBLE){
                     break;
                 }
-                //ÔÚÒÆ¶¯Ê±ºòleftviewÊ¼ÖÕ¿É¼û
+                //åœ¨ç§»åŠ¨æ—¶å€™leftviewå§‹ç»ˆå¯è§
                 setLeftViewVisiable();
                 int moveX = (int) event.getRawX();
                 int deltaX = tempX - moveX;
@@ -206,7 +206,7 @@ public class AnimationSildingLayout extends RelativeLayout {
                 if (moveX - downX >= 0 && isSilding) {
                     parentView.setX(parentView.getX() - deltaX);
 
-                    //¸üĞÂlistviewµÄÎÄ±¾
+                    //æ›´æ–°listviewçš„æ–‡æœ¬
                     changeListView();
                     if (Math.abs(leftViewTotalMove * leftlist_move_rate) > 1) {
                         float targetX = leftView.getX() - leftViewTotalMove * leftlist_move_rate;
@@ -225,7 +225,7 @@ public class AnimationSildingLayout extends RelativeLayout {
                 }
                 leftViewTotalMove = 0;
                 isSilding = false;
-                if (parentView.getX() >= viewWidth / 3) {//ÒÆ¶¯¼ÌĞø³¬¹ı1/3¾ÍÏòÓÒ»¬¶¯
+                if (parentView.getX() >= viewWidth / 3) {//ç§»åŠ¨ç»§ç»­è¶…è¿‡1/3å°±å‘å³æ»‘åŠ¨
                     scrollRight();
                     extendLeftView();
                 } else {
@@ -268,18 +268,18 @@ public class AnimationSildingLayout extends RelativeLayout {
 
         super.onLayout(changed, l, t, r, b);
         if (changed) {
-            // »ñÈ¡rightViewËùÔÚ²¼¾ÖµÄ¸¸²¼¾Ö
-            parentView = (ViewGroup) rightView.getParent();
+            // è·å–rightViewæ‰€åœ¨å¸ƒå±€çš„çˆ¶å¸ƒå±€
+            parentView = (ViewGroup) middleView.getParent();
             viewWidth = this.getWidth();
             leftlist_move_rate = leftlist_img_width / (viewWidth - leftlist_img_width);
-            Log.d("LogonActivity", "SildingLayout£ºonLayout: leftlist_move_rate" + leftlist_move_rate);
+            Log.d("LogonActivity", "SildingLayoutï¼šonLayout: leftlist_move_rate" + leftlist_move_rate);
 
 
         }
     }
 
     /**
-     * ÉèÖÃOnSildingFinishListener, ÔÚonSildingFinish()·½·¨ÖĞfinish Activity
+     * è®¾ç½®OnSildingFinishListener, åœ¨onSildingFinish()æ–¹æ³•ä¸­finish Activity
      *
      * @param onSildingFinishListener
      */
@@ -290,7 +290,7 @@ public class AnimationSildingLayout extends RelativeLayout {
 
 
     /**
-     * ¹ö¶¯³ö½çÃæ
+     * æ»šåŠ¨å‡ºç•Œé¢
      */
     private void scrollRight() {
         parentViewSliding((int) parentView.getX(), viewWidth, parentView, 500l, new AnimatorListenerAdapter() {
@@ -306,7 +306,7 @@ public class AnimationSildingLayout extends RelativeLayout {
     }
 
     /**
-     * ¹ö¶¯µ½ÆğÊ¼Î»ÖÃ
+     * æ»šåŠ¨åˆ°èµ·å§‹ä½ç½®
      */
     public void scrollOrigin() {
         parentViewSliding((int) parentView.getX(), 0, parentView, 500l, new AnimatorListenerAdapter() {
@@ -323,8 +323,8 @@ public class AnimationSildingLayout extends RelativeLayout {
         int visiblePosition = leftView.getFirstVisiblePosition();
         int lastVisiblePosition = leftView.getLastVisiblePosition();
         int selectedItemNum=selectItemPosition-visiblePosition;
-        // Log.d("LogonActivity", String.format("SildingLayout£ºvisiblePosition:%d ,lastVisiblePosition %d",visiblePosition,lastVisiblePosition));
-        for (int i = 0; i <= lastVisiblePosition - visiblePosition; i++)//»ñÈ¡ListViewµÄËùÓĞItemÊıÄ¿
+        // Log.d("LogonActivity", String.format("SildingLayoutï¼švisiblePosition:%d ,lastVisiblePosition %d",visiblePosition,lastVisiblePosition));
+        for (int i = 0; i <= lastVisiblePosition - visiblePosition; i++)//è·å–ListViewçš„æ‰€æœ‰Itemæ•°ç›®
         {
             //    LinearLayout linearlayout = (LinearLayout)mListView.getChildAt(i);
             View view = leftView.getChildAt(i);
@@ -334,7 +334,7 @@ public class AnimationSildingLayout extends RelativeLayout {
                 // holder.textView.setText(String.valueOf(parentViewScrollX));
                 holder.description.setAlpha(Math.abs(parentView.getX()) / viewWidth);
                 if(i==selectedItemNum){
-                    holder.textView.setText("ÎÒ±»Ñ¡ÖĞÁË£¡");
+                    holder.textView.setText("æˆ‘è¢«é€‰ä¸­äº†ï¼");
                 }
             }
         }
@@ -344,7 +344,7 @@ public class AnimationSildingLayout extends RelativeLayout {
         this.selectItemPosition = position;
         arrowView.setY(leftView.getChildAt(position-leftView.getFirstVisiblePosition()).getTop());
         tempScrollY=(int)getScroll();
-        if (Math.abs(leftView.getX()) < leftlist_img_width * 0.2) { //Èç¹ûleftview´ó²¿·Ö¶¼ÏÔÊ¾³öÀ´£¬¾ÍÖ´ĞĞ¶¯»­
+        if (Math.abs(leftView.getX()) < leftlist_img_width * 0.2) { //å¦‚æœleftviewå¤§éƒ¨åˆ†éƒ½æ˜¾ç¤ºå‡ºæ¥ï¼Œå°±æ‰§è¡ŒåŠ¨ç”»
 
             parentViewSliding(viewWidth, 0, parentView, 500l, new AnimatorListenerAdapter() {
                 @Override
@@ -427,7 +427,7 @@ public class AnimationSildingLayout extends RelativeLayout {
     }
 
     /**
-     * Ìí¼ÓÓÃ»§µÄËÙ¶È¸ú×ÙÆ÷
+     * æ·»åŠ ç”¨æˆ·çš„é€Ÿåº¦è·Ÿè¸ªå™¨
      *
      * @param event
      */
@@ -440,7 +440,7 @@ public class AnimationSildingLayout extends RelativeLayout {
     }
 
     /**
-     * ÒÆ³ıÓÃ»§ËÙ¶È¸ú×ÙÆ÷
+     * ç§»é™¤ç”¨æˆ·é€Ÿåº¦è·Ÿè¸ªå™¨
      */
     private void recycleVelocityTracker() {
         if (velocityTracker != null) {
@@ -450,7 +450,7 @@ public class AnimationSildingLayout extends RelativeLayout {
     }
 
     /**
-     * »ñÈ¡X·½ÏòµÄ»¬¶¯ËÙ¶È,´óÓÚ0ÏòÓÒ»¬¶¯£¬·´Ö®Ïò×ó
+     * è·å–Xæ–¹å‘çš„æ»‘åŠ¨é€Ÿåº¦,å¤§äº0å‘å³æ»‘åŠ¨ï¼Œåä¹‹å‘å·¦
      *
      * @return
      */

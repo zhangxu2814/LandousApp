@@ -35,7 +35,8 @@
                     android:id="@+id/parentView_layout"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
-                    android:paddingLeft="@dimen/leftlist_img_width" >
+                    android:paddingLeft="@dimen/leftlist_img_width" 
+                     android:layoutAnimation="@anim/food_anim_layout">
                 <ImageView android:id="@+id/img_arrow"
                            android:background="@drawable/lib_phone_charge_back"
                            android:layout_width="wrap_content"

@@ -1,114 +1,77 @@
 package com.zykj.landous.activity;
 
-import com.zykj.landous.R;
-import com.zykj.landous.classify.AnimationSildingLayout;
-import com.zykj.landous.classify.LeftViewAdapter;
-import com.zykj.landous.classify.RightListAdapter;
-
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.Toast;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 
-public class ClassifyActivity extends BaseActivity {
+import com.zykj.landous.R;
+import com.zykj.landous.adapter.ClassAdapter;
 
-	public ListView rightList;
+public class ClassifyActivity extends Activity implements
+		OnItemClickListener {
 
-	ListView leftList;
-	RightListAdapter bb;
-	LeftViewAdapter aa;
-	public int foodpoition;
-	public String leixingName;
+	private ListView lv_class1 = null;
+	private ListView lv_class2 = null;
+	private ListView lv_class3 = null;
+	String[] str = new String[] { "ä¼‘é—²é£Ÿå“", "ä¸ªäººæ´—æŠ¤", "é…’æ°´é¥®æ–™" };
+	String[] str1 = new String[] { "è¥¿å®‰", "æ±‰ä¸­", "å’¸é˜³" };
+	String[] str2 = new String[] { "è²æ¹–åŒº", "ç¢‘æ—åŒº", "é›å¡”åŒº" };
+	private int flag = 0;
 
-	private int last_item = -1;
-	private TextView oldView;
-	String cities[][] = new String[][] {
-			new String[] { "È«²¿ÃÀÊ³", "±¾°ï½­Õã²Ë", "´¨²Ë", "ÔÁ²Ë", "Ïæ²Ë", "¶«±±²Ë", "Ì¨Íå²Ë",
-					"ĞÂ½®/ÇåÕæ", "ËØ²Ë", "»ğ¹ø", "×ÔÖú²Í", "Ğ¡³Ô¿ì²Í", "ÈÕ±¾", "º«¹úÁÏÀí", "¶«ÄÏÑÇ²Ë",
-					"Î÷²Í", "Ãæ°üÌğµã", "ÆäËû" },
-			new String[] { "È«²¿ĞİÏĞÓéÀÖ", "¿§·ÈÌü", "¾Æ°É", "²è¹İ", "KTV", "µçÓ°Ôº", "ÓÎÀÖÓÎÒÕ",
-					"¹«Ô°", "¾°µã/½¼ÓÎ", "Ï´Ô¡", "×ãÔ¡°´Ä¦", "ÎÄ»¯ÒÕÊõ", "DIYÊÖ¹¤·»", "×ÀÇò¹İ",
-					"×ÀÃæÓÎÏ·", "¸ü¶àĞİÏĞÓéÀÖ" },
-			new String[] { "È«²¿¹ºÎï", "×ÛºÏÉÌ³¡", "·şÊÎĞ¬°ü", "ÔË¶¯»§Íâ", "Öé±¦ÊÎÆ·", "»¯×±Æ·",
-					"ÊıÂë¼Òµç", "Ç××Ó¹ºÎï", "¼Ò¾Ó½¨²Ä", "Êéµê", "Êéµê", "ÑÛ¾µµê", "ÌØÉ«¼¯ÊĞ",
-					"¸ü¶à¹ºÎï³¡Ëù", "Ê³Æ·²è¾Æ", "³¬ÊĞ/±ãÀûµê", "Ò©µê" },
-			new String[] { "È«²¿ĞİÏĞÓéÀÖ", "¿§·ÈÌü", "¾Æ°É", "²è¹İ", "KTV", "µçÓ°Ôº", "ÓÎÀÖÓÎÒÕ",
-					"¹«Ô°", "¾°µã/½¼ÓÎ", "Ï´Ô¡", "×ãÔ¡°´Ä¦", "ÎÄ»¯ÒÕÊõ", "DIYÊÖ¹¤·»", "×ÀÇò¹İ",
-					"×ÀÃæÓÎÏ·", "¸ü¶àĞİÏĞÓéÀÖ" },
-			new String[] { "È«", "¿§·ÈÌü", "¾Æ°É", "²è¹İ", "KTV", "ÓÎÀÖÓÎÒÕ", "¹«Ô°",
-					"¾°µã/½¼ÓÎ", "Ï´Ô¡", "×ãÔ¡°´Ä¦", "ÎÄ»¯ÒÕÊõ", "DIYÊÖ¹¤·»", "×ÀÇò¹İ", "×ÀÃæÓÎÏ·",
-					"¸ü¶àĞİÏĞÓéÀÖ" },
-			new String[] { "È«²¿", "¿§·ÈÌü", "¾Æ°É", "²è¹İ", "µçÓ°Ôº", "ÓÎÀÖÓÎÒÕ", "¹«Ô°",
-					"¾°µã/½¼ÓÎ", "Ï´Ô¡", "×ãÔ¡°´Ä¦", "ÎÄ»¯ÒÕÊõ", "DIYÊÖ¹¤·»", "×ÀÇò¹İ", "×ÀÃæÓÎÏ·",
-					"¸ü¶àĞİÏĞÓéÀÖ" },
-			new String[] { "È«²¿Ğİ", "¿§·ÈÌü", "¾Æ°É", "²è¹İ", "KTV", "µçÓ°Ôº", "ÓÎÀÖÓÎÒÕ",
-					"¹«Ô°", "¾°µã/½¼ÓÎ", "Ï´Ô¡", "×ãÔ¡°´Ä¦", "ÎÄ»¯ÒÕÊõ", "DIYÊÖ¹¤·»", "×ÀÇò¹İ",
-					"×ÀÃæÓÎÏ·", "¸ü¶àĞİÏĞÓéÀÖ" },
-			new String[] { "È«²¿ĞİÏĞ", "¿§·ÈÌü", "¾Æ°É", "²è¹İ", "KTV", "µçÓ°Ôº", "ÓÎÀÖÓÎÒÕ",
-					"¹«Ô°", "¾°µã/½¼ÓÎ", "Ï´Ô¡", "×ãÔ¡°´Ä¦", "ÎÄ»¯ÒÕÊõ", "DIYÊÖ¹¤·»", "×ÀÇò¹İ",
-					"×ÀÃæÓÎÏ·", "¸ü¶àĞİÏĞÓéÀÖ" },
-			new String[] { "È«²¿ĞİÏĞÓé", "¿§·ÈÌü", "¾Æ°É", "²è¹İ", "KTV", "µçÓ°Ôº", "ÓÎÀÖÓÎÒÕ",
-					"¹«Ô°", "¾°µã/½¼ÓÎ", "Ï´Ô¡", "×ãÔ¡°´Ä¦", "ÎÄ»¯ÒÕÊõ", "DIYÊÖ¹¤·»", "×ÀÇò¹İ",
-					"×ÀÃæÓÎÏ·" },
-			new String[] { "È«²¿ĞİÏĞÓéÀÖ", "¿§·ÈÌü", "¾Æ°É", "²è¹İ", "KTV", "µçÓ°Ôº", "ÓÎÀÖÓÎÒÕ",
-					"¹«Ô°", "¾°µã/½¼ÓÎ", "Ï´Ô¡", "×ãÔ¡°´Ä¦", "ÎÄ»¯ÒÕÊõ", "DIYÊÖ¹¤·»", "×ÀÇò¹İ",
-					"×ÀÃæÓÎÏ·", "¸ü¶àĞİÏĞÓéÀÖ" },
-			new String[] { "È«²¿ĞİÏĞaaa", "¿§·ÈÌü", "¾Æ°É", "²è¹İ", "KTV", "µçÓ°Ôº", "ÓÎÀÖÓÎÒÕ",
-					"¹«Ô°", "¾°µã/½¼ÓÎ", "Ï´Ô¡", "×ãÔ¡°´Ä¦", "ÎÄ»¯ÒÕÊõ", "DIYÊÖ¹¤·»", "×ÀÇò¹İ",
-					"×ÀÃæÓÎÏ·" }, };
-	String food[] = new String[] { "È«²¿ÆµµÀ", "ÃÀÊ³", "ĞİÏĞÓéÀÖ", "¹ºÎï", "¾Æµê", "ÀöÈË",
-			"ÔË¶¯½¡Éí", "½á»é", "Ç××Ó", "°®³µ", "Éú»î·şÎñ", "ÃÀÊ³", "ĞİÏĞÓéÀÖ", "¹ºÎï", "¾Æµê", "ÀöÈË",
-			"ÔË¶¯½¡Éí", "½á»é", "Ç××Ó", "°®³µ", "Éú»î·şÎñ" };
-
+	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.food);
+		setContentView(R.layout.activity_classify);
+		loadView();
+	}
 
-		leftList = (ListView) findViewById(R.id.list);
-		rightList = (ListView) findViewById(R.id.list1);
-		final AnimationSildingLayout layout = (AnimationSildingLayout) findViewById(R.id.main_slayout);
-		layout.initLayout(leftList, rightList);
-		layout.setOnSildingFinishListener(new AnimationSildingLayout.OnSildingFinishListener() {
-			@Override
-			public void onSildingFinish() {
-				// todo ´¦Àírightview ÒÆ³ö½çÃæµÄÂß¼­
+	private void loadView() {
+		lv_class1 = (ListView) findViewById(R.id.lv_classs1);
+		lv_class2 = (ListView) findViewById(R.id.lv_classs2);
+		lv_class3 = (ListView) findViewById(R.id.lv_classs3);
+		ClassAdapter ca = new ClassAdapter(ClassifyActivity.this, str);
+		lv_class1.setAdapter(ca);
+		lv_class1.setOnItemClickListener(this);
+		lv_class2.setOnItemClickListener(this);
+	}
+
+	@Override
+	public void onItemClick(AdapterView<?> arg0, View v, int arg2, long arg3) {
+		if (flag == 0 || flag == 2) {
+
+			if (flag == 2) {
+				lv_class3.setVisibility(View.GONE);
 			}
-		});
+			ClassAdapter ca = new ClassAdapter(ClassifyActivity.this, str1);
+			lv_class2.setAdapter(ca);
+			lv_class2.setVisibility(View.VISIBLE);
+			lv_class1.setLayoutParams(new LinearLayout.LayoutParams(
+					LinearLayout.LayoutParams.MATCH_PARENT,
+					LinearLayout.LayoutParams.MATCH_PARENT, 4));
+			lv_class2.setLayoutParams(new LinearLayout.LayoutParams(
+					LinearLayout.LayoutParams.MATCH_PARENT,
+					LinearLayout.LayoutParams.MATCH_PARENT, 2));
+			flag = 1;
 
-		aa = new LeftViewAdapter(ClassifyActivity.this, food, null, last_item);
-
-		leftList.setAdapter(aa);
-		leftList.setOnItemClickListener(new OnItemClickListener() {
-
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long id) {
-				foodpoition = position;
-				aa.setSelectedPosition(position);
-				aa.notifyDataSetInvalidated();
-				bb = new RightListAdapter(ClassifyActivity.this, cities,
-						foodpoition);
-
-				rightList.setDivider(null);
-				rightList.setAdapter(bb);
-
-				layout.startSildingInAnimation(position);
-			}
-		});
-		rightList.setOnItemClickListener(new OnItemClickListener() {
-
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long id) {
-				Toast.makeText(getApplicationContext(), cities[foodpoition%10][position], Toast.LENGTH_LONG).show();
-				
-			}
-		});
-		// update();
+		} else if (flag == 1) {
+			ClassAdapter ca = new ClassAdapter(ClassifyActivity.this, str2);
+			lv_class3.setAdapter(ca);
+			lv_class3.setVisibility(View.VISIBLE);
+			lv_class1.setLayoutParams(new LinearLayout.LayoutParams(
+					LinearLayout.LayoutParams.MATCH_PARENT,
+					LinearLayout.LayoutParams.MATCH_PARENT, 3));
+			lv_class2.setLayoutParams(new LinearLayout.LayoutParams(
+					LinearLayout.LayoutParams.MATCH_PARENT,
+					LinearLayout.LayoutParams.MATCH_PARENT, 3));
+			lv_class3.setLayoutParams(new LinearLayout.LayoutParams(
+					LinearLayout.LayoutParams.MATCH_PARENT,
+					LinearLayout.LayoutParams.MATCH_PARENT, 2));
+			flag = 2;
+		}
 	}
 
 }

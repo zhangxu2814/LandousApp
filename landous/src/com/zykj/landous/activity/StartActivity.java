@@ -14,13 +14,14 @@ import android.view.animation.Animation.AnimationListener;
 
 public class StartActivity extends Activity {
 	private Context context;
-
+	View view;
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		final View startView = View.inflate(this, R.layout.activity_start, null);
+		 view= startView.findViewById(R.id.ll_start);
 		setContentView(startView);
+		
 		context = this;
-		// 娓����
 		AlphaAnimation aa = new AlphaAnimation(0.3f, 1.0f);
 		aa.setDuration(100);
 		startView.setAnimation(aa);
@@ -45,7 +46,10 @@ public class StartActivity extends Activity {
 	}
 
 	private void redirectto() {
-		Intent intent = new Intent(this, MainActivity
+//		Intent intent = new Intent(this, MainActivity
+//				.class);
+		System.gc();  
+		Intent intent = new Intent(this, WelcomeActivity
 				.class);
 		startActivity(intent);
 		StartActivity.this.finish();

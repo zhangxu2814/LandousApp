@@ -13,7 +13,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 
-public class RightListAdapter extends BaseAdapter {
+public class MiddleAdapter extends BaseAdapter {
 	List<String> lst1;
 	Context context;
 	LayoutInflater layoutInflater;
@@ -26,7 +26,7 @@ public class RightListAdapter extends BaseAdapter {
 	 * (LayoutInflater)context.getSystemService
 	 * (Context.LAYOUT_INFLATER_SERVICE); }
 	 */
-	public RightListAdapter(Context context, String[][] cities, int position) {
+	public MiddleAdapter(Context context, String[][] cities, int position) {
 		this.context = context;
 		this.cities = cities;
 		layoutInflater = (LayoutInflater) context

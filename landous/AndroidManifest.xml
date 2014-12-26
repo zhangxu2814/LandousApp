@@ -5,7 +5,7 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="11"
+         android:minSdkVersion="8"
         android:targetSdkVersion="17" />
     <!-- Push service 运行需要的权限 -->
     <uses-permission android:name="android.permission.INTERNET" />
@@ -152,9 +152,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!-- 欢迎界面 -->
         <activity android:name="com.zykj.landous.activity.WelcomeActivity" >
         </activity>
+        <!-- 分类列表 -->
         <activity android:name="com.zykj.landous.activity.ClassifyActivity" >
+        </activity>
+        <!-- 商品列表 -->
+        <activity android:name="com.zykj.landous.activity.B1_GoodListActivity" >
         </activity>
     </application>
 

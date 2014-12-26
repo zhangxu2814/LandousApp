@@ -1,71 +1,73 @@
 package com.zykj.landous.fragment;
 
-import com.zykj.landous.R;
-import com.zykj.landous.activity.ClassifyActivity;
-import com.zykj.landous.classify.AnimationSildingLayout;
-import com.zykj.landous.classify.LeftViewAdapter;
-import com.zykj.landous.classify.RightListAdapter;
-
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.AdapterView.OnItemClickListener;
+
+import com.zykj.landous.MainActivity;
+import com.zykj.landous.R;
+import com.zykj.landous.activity.B1_GoodListActivity;
+import com.zykj.landous.adapter.ClassAdapter;
+import com.zykj.landous.classify.LeftViewAdapter;
+import com.zykj.landous.classify.MiddleAdapter;
 
 public class B0_Classify extends Fragment implements OnClickListener {
 	public ListView rightList;
 
-	ListView leftList;
-	RightListAdapter bb;
-	LeftViewAdapter aa;
-	public int foodpoition;
-	public String leixingName;
-
-	private int last_item = -1;
-	private TextView oldView;
+	private ListView lv_class1 = null;
+	private ListView lv_class2 = null;
+	private ListView lv_class3 = null;
 	String cities[][] = new String[][] {
-			new String[] { "È«²¿ÃÀÊ³", "±¾°ï½­Õã²Ë", "´¨²Ë", "ÔÁ²Ë", "Ïæ²Ë", "¶«±±²Ë", "Ì¨Íå²Ë",
-					"ĞÂ½®/ÇåÕæ", "ËØ²Ë", "»ğ¹ø", "×ÔÖú²Í", "Ğ¡³Ô¿ì²Í", "ÈÕ±¾", "º«¹úÁÏÀí", "¶«ÄÏÑÇ²Ë",
-					"Î÷²Í", "Ãæ°üÌğµã", "ÆäËû" },
-			new String[] { "È«²¿ĞİÏĞÓéÀÖ", "¿§·ÈÌü", "¾Æ°É", "²è¹İ", "KTV", "µçÓ°Ôº", "ÓÎÀÖÓÎÒÕ",
-					"¹«Ô°", "¾°µã/½¼ÓÎ", "Ï´Ô¡", "×ãÔ¡°´Ä¦", "ÎÄ»¯ÒÕÊõ", "DIYÊÖ¹¤·»", "×ÀÇò¹İ",
-					"×ÀÃæÓÎÏ·", "¸ü¶àĞİÏĞÓéÀÖ" },
-			new String[] { "È«²¿¹ºÎï", "×ÛºÏÉÌ³¡", "·şÊÎĞ¬°ü", "ÔË¶¯»§Íâ", "Öé±¦ÊÎÆ·", "»¯×±Æ·",
-					"ÊıÂë¼Òµç", "Ç××Ó¹ºÎï", "¼Ò¾Ó½¨²Ä", "Êéµê", "Êéµê", "ÑÛ¾µµê", "ÌØÉ«¼¯ÊĞ",
-					"¸ü¶à¹ºÎï³¡Ëù", "Ê³Æ·²è¾Æ", "³¬ÊĞ/±ãÀûµê", "Ò©µê" },
-			new String[] { "È«²¿ĞİÏĞÓéÀÖ", "¿§·ÈÌü", "¾Æ°É", "²è¹İ", "KTV", "µçÓ°Ôº", "ÓÎÀÖÓÎÒÕ",
-					"¹«Ô°", "¾°µã/½¼ÓÎ", "Ï´Ô¡", "×ãÔ¡°´Ä¦", "ÎÄ»¯ÒÕÊõ", "DIYÊÖ¹¤·»", "×ÀÇò¹İ",
-					"×ÀÃæÓÎÏ·", "¸ü¶àĞİÏĞÓéÀÖ" },
-			new String[] { "È«", "¿§·ÈÌü", "¾Æ°É", "²è¹İ", "KTV", "ÓÎÀÖÓÎÒÕ", "¹«Ô°",
-					"¾°µã/½¼ÓÎ", "Ï´Ô¡", "×ãÔ¡°´Ä¦", "ÎÄ»¯ÒÕÊõ", "DIYÊÖ¹¤·»", "×ÀÇò¹İ", "×ÀÃæÓÎÏ·",
-					"¸ü¶àĞİÏĞÓéÀÖ" },
-			new String[] { "È«²¿", "¿§·ÈÌü", "¾Æ°É", "²è¹İ", "µçÓ°Ôº", "ÓÎÀÖÓÎÒÕ", "¹«Ô°",
-					"¾°µã/½¼ÓÎ", "Ï´Ô¡", "×ãÔ¡°´Ä¦", "ÎÄ»¯ÒÕÊõ", "DIYÊÖ¹¤·»", "×ÀÇò¹İ", "×ÀÃæÓÎÏ·",
-					"¸ü¶àĞİÏĞÓéÀÖ" },
-			new String[] { "È«²¿Ğİ", "¿§·ÈÌü", "¾Æ°É", "²è¹İ", "KTV", "µçÓ°Ôº", "ÓÎÀÖÓÎÒÕ",
-					"¹«Ô°", "¾°µã/½¼ÓÎ", "Ï´Ô¡", "×ãÔ¡°´Ä¦", "ÎÄ»¯ÒÕÊõ", "DIYÊÖ¹¤·»", "×ÀÇò¹İ",
-					"×ÀÃæÓÎÏ·", "¸ü¶àĞİÏĞÓéÀÖ" },
-			new String[] { "È«²¿ĞİÏĞ", "¿§·ÈÌü", "¾Æ°É", "²è¹İ", "KTV", "µçÓ°Ôº", "ÓÎÀÖÓÎÒÕ",
-					"¹«Ô°", "¾°µã/½¼ÓÎ", "Ï´Ô¡", "×ãÔ¡°´Ä¦", "ÎÄ»¯ÒÕÊõ", "DIYÊÖ¹¤·»", "×ÀÇò¹İ",
-					"×ÀÃæÓÎÏ·", "¸ü¶àĞİÏĞÓéÀÖ" },
-			new String[] { "È«²¿ĞİÏĞÓé", "¿§·ÈÌü", "¾Æ°É", "²è¹İ", "KTV", "µçÓ°Ôº", "ÓÎÀÖÓÎÒÕ",
-					"¹«Ô°", "¾°µã/½¼ÓÎ", "Ï´Ô¡", "×ãÔ¡°´Ä¦", "ÎÄ»¯ÒÕÊõ", "DIYÊÖ¹¤·»", "×ÀÇò¹İ",
-					"×ÀÃæÓÎÏ·" },
-			new String[] { "È«²¿ĞİÏĞÓéÀÖ", "¿§·ÈÌü", "¾Æ°É", "²è¹İ", "KTV", "µçÓ°Ôº", "ÓÎÀÖÓÎÒÕ",
-					"¹«Ô°", "¾°µã/½¼ÓÎ", "Ï´Ô¡", "×ãÔ¡°´Ä¦", "ÎÄ»¯ÒÕÊõ", "DIYÊÖ¹¤·»", "×ÀÇò¹İ",
-					"×ÀÃæÓÎÏ·", "¸ü¶àĞİÏĞÓéÀÖ" },
-			new String[] { "È«²¿ĞİÏĞaaa", "¿§·ÈÌü", "¾Æ°É", "²è¹İ", "KTV", "µçÓ°Ôº", "ÓÎÀÖÓÎÒÕ",
-					"¹«Ô°", "¾°µã/½¼ÓÎ", "Ï´Ô¡", "×ãÔ¡°´Ä¦", "ÎÄ»¯ÒÕÊõ", "DIYÊÖ¹¤·»", "×ÀÇò¹İ",
-					"×ÀÃæÓÎÏ·" }, };
-	String food[] = new String[] { "È«²¿ÆµµÀ", "ÃÀÊ³", "ĞİÏĞÓéÀÖ", "¹ºÎï", "¾Æµê", "ÀöÈË",
-			"ÔË¶¯½¡Éí", "½á»é", "Ç××Ó", "°®³µ", "Éú»î·şÎñ", "ÃÀÊ³", "ĞİÏĞÓéÀÖ", "¹ºÎï", "¾Æµê", "ÀöÈË",
-			"ÔË¶¯½¡Éí", "½á»é", "Ç××Ó", "°®³µ", "Éú»î·şÎñ" };
+			new String[] { "å…¨éƒ¨ç¾é£Ÿ", "æœ¬å¸®æ±Ÿæµ™èœ", "å·èœ", "ç²¤èœ", "æ¹˜èœ", "ä¸œåŒ—èœ", "å°æ¹¾èœ",
+					"æ–°ç–†/æ¸…çœŸ", "ç´ èœ", "ç«é”…", "è‡ªåŠ©é¤", "å°åƒå¿«é¤", "æ—¥æœ¬", "éŸ©å›½æ–™ç†", "ä¸œå—äºšèœ",
+					"è¥¿é¤", "é¢åŒ…ç”œç‚¹", "å…¶ä»–" },
+			new String[] { "å…¨éƒ¨ä¼‘é—²å¨±ä¹", "å’–å•¡å…", "é…’å§", "èŒ¶é¦†", "KTV", "ç”µå½±é™¢", "æ¸¸ä¹æ¸¸è‰º",
+					"å…¬å›­", "æ™¯ç‚¹/éƒŠæ¸¸", "æ´—æµ´", "è¶³æµ´æŒ‰æ‘©", "æ–‡åŒ–è‰ºæœ¯", "DIYæ‰‹å·¥åŠ", "æ¡Œçƒé¦†",
+					"æ¡Œé¢æ¸¸æˆ", "æ›´å¤šä¼‘é—²å¨±ä¹" },
+			new String[] { "å…¨éƒ¨è´­ç‰©", "ç»¼åˆå•†åœº", "æœé¥°é‹åŒ…", "è¿åŠ¨æˆ·å¤–", "ç å®é¥°å“", "åŒ–å¦†å“",
+					"æ•°ç å®¶ç”µ", "äº²å­è´­ç‰©", "å®¶å±…å»ºæ", "ä¹¦åº—", "ä¹¦åº—", "çœ¼é•œåº—", "ç‰¹è‰²é›†å¸‚",
+					"æ›´å¤šè´­ç‰©åœºæ‰€", "é£Ÿå“èŒ¶é…’", "è¶…å¸‚/ä¾¿åˆ©åº—", "è¯åº—" },
+			new String[] { "å…¨éƒ¨ä¼‘é—²å¨±ä¹", "å’–å•¡å…", "é…’å§", "èŒ¶é¦†", "KTV", "ç”µå½±é™¢", "æ¸¸ä¹æ¸¸è‰º",
+					"å…¬å›­", "æ™¯ç‚¹/éƒŠæ¸¸", "æ´—æµ´", "è¶³æµ´æŒ‰æ‘©", "æ–‡åŒ–è‰ºæœ¯", "DIYæ‰‹å·¥åŠ", "æ¡Œçƒé¦†",
+					"æ¡Œé¢æ¸¸æˆ", "æ›´å¤šä¼‘é—²å¨±ä¹" },
+			new String[] { "å…¨", "å’–å•¡å…", "é…’å§", "èŒ¶é¦†", "KTV", "æ¸¸ä¹æ¸¸è‰º", "å…¬å›­",
+					"æ™¯ç‚¹/éƒŠæ¸¸", "æ´—æµ´", "è¶³æµ´æŒ‰æ‘©", "æ–‡åŒ–è‰ºæœ¯", "DIYæ‰‹å·¥åŠ", "æ¡Œçƒé¦†", "æ¡Œé¢æ¸¸æˆ",
+					"æ›´å¤šä¼‘é—²å¨±ä¹" },
+			new String[] { "å…¨éƒ¨", "å’–å•¡å…", "é…’å§", "èŒ¶é¦†", "ç”µå½±é™¢", "æ¸¸ä¹æ¸¸è‰º", "å…¬å›­",
+					"æ™¯ç‚¹/éƒŠæ¸¸", "æ´—æµ´", "è¶³æµ´æŒ‰æ‘©", "æ–‡åŒ–è‰ºæœ¯", "DIYæ‰‹å·¥åŠ", "æ¡Œçƒé¦†", "æ¡Œé¢æ¸¸æˆ",
+					"æ›´å¤šä¼‘é—²å¨±ä¹" },
+			new String[] { "å…¨éƒ¨ä¼‘", "å’–å•¡å…", "é…’å§", "èŒ¶é¦†", "KTV", "ç”µå½±é™¢", "æ¸¸ä¹æ¸¸è‰º",
+					"å…¬å›­", "æ™¯ç‚¹/éƒŠæ¸¸", "æ´—æµ´", "è¶³æµ´æŒ‰æ‘©", "æ–‡åŒ–è‰ºæœ¯", "DIYæ‰‹å·¥åŠ", "æ¡Œçƒé¦†",
+					"æ¡Œé¢æ¸¸æˆ", "æ›´å¤šä¼‘é—²å¨±ä¹" },
+			new String[] { "å…¨éƒ¨ä¼‘é—²", "å’–å•¡å…", "é…’å§", "èŒ¶é¦†", "KTV", "ç”µå½±é™¢", "æ¸¸ä¹æ¸¸è‰º",
+					"å…¬å›­", "æ™¯ç‚¹/éƒŠæ¸¸", "æ´—æµ´", "è¶³æµ´æŒ‰æ‘©", "æ–‡åŒ–è‰ºæœ¯", "DIYæ‰‹å·¥åŠ", "æ¡Œçƒé¦†",
+					"æ¡Œé¢æ¸¸æˆ", "æ›´å¤šä¼‘é—²å¨±ä¹" },
+			new String[] { "å…¨éƒ¨ä¼‘é—²å¨±", "å’–å•¡å…", "é…’å§", "èŒ¶é¦†", "KTV", "ç”µå½±é™¢", "æ¸¸ä¹æ¸¸è‰º",
+					"å…¬å›­", "æ™¯ç‚¹/éƒŠæ¸¸", "æ´—æµ´", "è¶³æµ´æŒ‰æ‘©", "æ–‡åŒ–è‰ºæœ¯", "DIYæ‰‹å·¥åŠ", "æ¡Œçƒé¦†",
+					"æ¡Œé¢æ¸¸æˆ" },
+			new String[] { "å…¨éƒ¨ä¼‘é—²å¨±ä¹", "å’–å•¡å…", "é…’å§", "èŒ¶é¦†", "KTV", "ç”µå½±é™¢", "æ¸¸ä¹æ¸¸è‰º",
+					"å…¬å›­", "æ™¯ç‚¹/éƒŠæ¸¸", "æ´—æµ´", "è¶³æµ´æŒ‰æ‘©", "æ–‡åŒ–è‰ºæœ¯", "DIYæ‰‹å·¥åŠ", "æ¡Œçƒé¦†",
+					"æ¡Œé¢æ¸¸æˆ", "æ›´å¤šä¼‘é—²å¨±ä¹" },
+			new String[] { "å…¨éƒ¨ä¼‘é—²aaa", "å’–å•¡å…", "é…’å§", "èŒ¶é¦†", "KTV", "ç”µå½±é™¢", "æ¸¸ä¹æ¸¸è‰º",
+					"å…¬å›­", "æ™¯ç‚¹/éƒŠæ¸¸", "æ´—æµ´", "è¶³æµ´æŒ‰æ‘©", "æ–‡åŒ–è‰ºæœ¯", "DIYæ‰‹å·¥åŠ", "æ¡Œçƒé¦†",
+					"æ¡Œé¢æ¸¸æˆ" }, };
+	String food[] = new String[] { "ä¼‘é—²é£Ÿå“", "ä¸ªäººæ´—æŠ¤", "é…’æ°´é¥®æ–™", "æ²¹ç²®è°ƒå‘³", "å®¶åº­æ¸…æ´",
+			"ç”Ÿæ´»æ—¥ç”¨", "å®¶ç”¨ç”µå™¨", "åŠå…¬ç¤¼å“" };
+	String str3[][][] = new String[][][] { cities, cities, cities, cities,
+			cities };
+	private int one, two;
+	private ClassAdapter ca1;
+	ClassAdapter ca2;
+	ClassAdapter ca3;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -76,51 +78,66 @@ public class B0_Classify extends Fragment implements OnClickListener {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View view = inflater.inflate(R.layout.food, null);
-		leftList = (ListView) view.findViewById(R.id.list);
-		rightList = (ListView) view.findViewById(R.id.list1);
-		final AnimationSildingLayout layout = (AnimationSildingLayout) view
-				.findViewById(R.id.main_slayout);
-		layout.initLayout(leftList, rightList);
-		layout.setOnSildingFinishListener(new AnimationSildingLayout.OnSildingFinishListener() {
-			@Override
-			public void onSildingFinish() {
-				// todo ´¦Àírightview ÒÆ³ö½çÃæµÄÂß¼­
-			}
-		});
-
-		aa = new LeftViewAdapter(getActivity(), food, null, last_item);
-
-		leftList.setAdapter(aa);
-		leftList.setOnItemClickListener(new OnItemClickListener() {
+		View view = inflater.inflate(R.layout.activity_classify, null);
+		lv_class1 = (ListView) view.findViewById(R.id.lv_classs1);
+		lv_class2 = (ListView) view.findViewById(R.id.lv_classs2);
+		lv_class3 = (ListView) view.findViewById(R.id.lv_classs3);
+		ca1 = new ClassAdapter(getActivity(), food);
+		lv_class1.setAdapter(ca1);
+		lv_class1.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
-			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long id) {
-				foodpoition = position;
-				aa.setSelectedPosition(position);
-				aa.notifyDataSetInvalidated();
-				bb = new RightListAdapter(getActivity(), cities, foodpoition);
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
 
-				rightList.setDivider(null);
-				rightList.setAdapter(bb);
-
-				layout.startSildingInAnimation(position);
+				ca2 = new ClassAdapter(getActivity(), cities[arg2]);
+				one = arg2;
+				ca1.setItem(one);
+				ca1.notifyDataSetChanged();
+				lv_class2.setAdapter(ca2);
+				lv_class2.setVisibility(View.VISIBLE);
+				lv_class3.setVisibility(View.GONE);
+				lv_class1.setLayoutParams(new LinearLayout.LayoutParams(
+						LinearLayout.LayoutParams.MATCH_PARENT,
+						LinearLayout.LayoutParams.MATCH_PARENT, 2));
+				lv_class2.setLayoutParams(new LinearLayout.LayoutParams(
+						LinearLayout.LayoutParams.MATCH_PARENT,
+						LinearLayout.LayoutParams.MATCH_PARENT, 1));
 			}
 		});
-		rightList.setOnItemClickListener(new OnItemClickListener() {
+		lv_class2.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
-			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long id) {
-				Toast.makeText(getActivity(),
-						cities[foodpoition % 10][position], Toast.LENGTH_LONG)
-						.show();
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				two = arg2;
+				ca2.setItem(two);
+				ca2.notifyDataSetChanged();
+				ClassAdapter ca3 = new ClassAdapter(getActivity(),
+						str3[one][two]);
+				lv_class3.setAdapter(ca3);
+				lv_class3.setVisibility(View.VISIBLE);
+				lv_class1.setLayoutParams(new LinearLayout.LayoutParams(
+						LinearLayout.LayoutParams.MATCH_PARENT,
+						LinearLayout.LayoutParams.MATCH_PARENT, 1));
+				lv_class2.setLayoutParams(new LinearLayout.LayoutParams(
+						LinearLayout.LayoutParams.MATCH_PARENT,
+						LinearLayout.LayoutParams.MATCH_PARENT, 1));
+				lv_class3.setLayoutParams(new LinearLayout.LayoutParams(
+						LinearLayout.LayoutParams.MATCH_PARENT,
+						LinearLayout.LayoutParams.MATCH_PARENT, 1));
 
 			}
 		});
-		// update();
+		lv_class3.setOnItemClickListener(new OnItemClickListener() {
 
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				Intent it = new Intent(getActivity(), B1_GoodListActivity.class);
+				startActivity(it);
+			}
+		});
 		return view;
 	}
 
