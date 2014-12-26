@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="44dp"
+    android:background="@drawable/nav_background"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"  >
+
+    <com.BeeFramework.view.DarkImageView
+        android:id="@+id/topview_back"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center_vertical"
+        android:padding="10dp"
+        android:src="@drawable/b2_publishphotoboard_1"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/topview_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:singleLine="true"
+        android:ellipsize="marquee"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:textColor="#ffffff"
+        android:textSize="19dp"
+        android:layout_marginLeft="45dp"
+        android:layout_marginRight="45dp"/>
+    <ImageView android:layout_height="30dp"
+            android:layout_width="30dp"
+            android:id="@+id/rightButton"
+            android:src="@drawable/profile_refresh_site_icon"
+            android:visibility="visible" android:layout_gravity="center_vertical|right"/>
+
+</FrameLayout>
