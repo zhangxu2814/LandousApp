@@ -8,7 +8,7 @@
     <FrameLayout
         android:layout_width="fill_parent"
         android:layout_height="160dp"
-        android:background="@drawable/profile_img_bg" >
+        android:background="@drawable/profile_image_bg" >
 
         <ImageView
             android:id="@+id/profile_head_setting"
@@ -29,7 +29,7 @@
             <ImageView
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:src="@drawable/profile_avatar_bg" />
+                android:src="@drawable/profile_head_placeholder" />
 
          <!-- 占位图片  
          <com.insthub.BeeFramework.view.RoundedWebImageView
@@ -61,7 +61,7 @@
             android:textColor="#ffffff"
             android:visibility="visible"
             android:textSize="18dp"
-            android:text="leoleo" />
+            android:text="旋风小霸王" />
 
         <LinearLayout
             android:id="@+id/member_level_layout"
@@ -89,7 +89,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_weight="3"
-                android:text="leoleo"
+                android:text="手机号：110"
                 android:textColor="#cccccc"
                 android:textSize="14dp"
                 android:visibility="visible" />
@@ -122,7 +122,7 @@
                     android:layout_height="30dp"
                     android:layout_gravity="center"
                     android:layout_marginBottom="13dp"
-                    android:src="@drawable/profile_refresh_payment_icon" />
+                    android:src="@drawable/profile_refresh_payment_icon_" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -165,7 +165,7 @@
                     android:layout_height="30dp"
                     android:layout_gravity="center"
                     android:layout_marginBottom="13dp"
-                    android:src="@drawable/profile_refresh_ship_icon" />
+                    android:src="@drawable/profile_refresh_ship_icon_" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -208,7 +208,7 @@
                     android:layout_height="30dp"
                     android:layout_gravity="center"
                     android:layout_marginBottom="13dp"
-                    android:src="@drawable/profile_refresh_receipt_icon" />
+                    android:src="@drawable/profile_refresh_receipt_icon_" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -251,7 +251,7 @@
                     android:layout_height="30dp"
                     android:layout_gravity="center"
                     android:layout_marginBottom="13dp"
-                    android:src="@drawable/profile_refresh_history_icon" />
+                    android:src="@drawable/profile_refresh_history_icon_" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -287,7 +287,12 @@
             android:background="@drawable/body_cont"
             android:gravity="center_vertical"
             android:orientation="horizontal" >
-
+			<ImageView 
+			    android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/profile_save_icon_" 
+			    />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -322,7 +327,7 @@
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:visibility="gone" >
-
+			
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -355,7 +360,12 @@
             android:background="@drawable/body_cont"
             android:gravity="center_vertical"
             android:orientation="horizontal" >
-
+			<ImageView 
+			    android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/profile_receiver_address_" 
+			    />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -380,7 +390,12 @@
             android:background="@drawable/body_cont"
             android:gravity="center_vertical"
             android:orientation="horizontal" >
-
+				<ImageView 
+			    android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/profile_coin_store_" 
+			    />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

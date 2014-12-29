@@ -1,6 +1,7 @@
 package com.zykj.landous.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -15,6 +16,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.zykj.landous.R;
+import com.zykj.landous.activity.E1_SettingActivity;
 
 public class E0_ProfileFragment  extends Fragment implements OnClickListener{
 
@@ -79,10 +81,10 @@ public class E0_ProfileFragment  extends Fragment implements OnClickListener{
 			@Override
 			public void onClick(View v) {
 				 
-//				Intent intent = new Intent(getActivity(), G0_SettingActivity.class);
-//				startActivity(intent);
-//                getActivity().overridePendingTransition(R.anim.push_right_in,
-//                        R.anim.push_right_out);
+				Intent intent = new Intent(getActivity(), E1_SettingActivity.class);
+				startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.push_right_in,
+                        R.anim.push_right_out);
 			}
 		});
         listView = (ListView) view.findViewById(R.id.profile_list);
