@@ -30,6 +30,7 @@ public class MainTabsFrament extends Fragment {
 
 	B0_IndexFragment homeFragment;
 	B0_Classify classifyFragment;
+	E0_ProfileFragment profileFragment;
 
 	/*
 	 * (non-Javadoc)
@@ -173,11 +174,11 @@ public class MainTabsFrament extends Fragment {
 			this.tab_five.setImageResource(R.drawable.footer_user_icon);
 
 		} else if (tabName == "tab_five") {
-			homeFragment = new B0_IndexFragment();
+			profileFragment = new E0_ProfileFragment();
 			FragmentTransaction localFragmentTransaction = getFragmentManager()
 					.beginTransaction();
 			localFragmentTransaction.replace(R.id.fragment_container,
-					homeFragment, "tab_five");
+					profileFragment, "tab_five");
 			localFragmentTransaction.commit();
 
 			this.tab_one.setImageResource(R.drawable.footer_home_icon);
