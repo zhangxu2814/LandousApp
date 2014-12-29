@@ -1,5 +1,12 @@
 package com.zykj.landous.activity;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import com.BeeFramework.activity.BaseActivity;
+import com.BeeFramework.model.BusinessResponse;
+import com.external.androidquery.callback.AjaxStatus;
+import com.external.maxwin.view.XListView.IXListViewListener;
 import com.zykj.landous.R;
 
 import android.graphics.Color;
@@ -11,7 +18,7 @@ import android.view.View.OnClickListener;
 import android.widget.LinearLayout;
 
 public class B1_GoodListActivity extends BaseActivity implements
-		OnClickListener {
+		BusinessResponse, IXListViewListener, OnClickListener {
 	private LinearLayout ll_tab1, ll_tab2, ll_tab3, ll_tab4;
 	private LinearLayout[] tabs = null;
 	Handler mHandler = new Handler() {
@@ -71,6 +78,25 @@ public class B1_GoodListActivity extends BaseActivity implements
 				mHandler.sendMessage(message);
 			}
 		}
+	}
+
+	@Override
+	public void onRefresh(int id) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void onLoadMore(int id) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void OnMessageResponse(String url, JSONObject jo, AjaxStatus status)
+			throws JSONException {
+		// TODO Auto-generated method stub
+
 	}
 
 }

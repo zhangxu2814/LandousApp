@@ -185,7 +185,7 @@ public class MainTabsFrament extends Fragment {
 			this.tab_three.setImageResource(R.drawable.footer_shop_icon);
 			this.tab_four
 					.setImageResource(R.drawable.footer_shopping_cart_icon);
-			this.tab_five.setImageResource(R.drawable.footer_user_active_icon);
+			this.tab_five.setImageResource(R.drawable.footer_user_activity_icon);
 		}
 	}
 

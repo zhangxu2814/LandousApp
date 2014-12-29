@@ -3,14 +3,20 @@
 
     <string name="easily_get_ecmobile">轻松拥有移动商城</string>
     <string name="app_name">懒豆商城</string>
+    <string name="excellent_parter">不拘泥于电脑操作，不限制在固定空间，ECMobile有效提升了商城的宣传及销售渠道，让您更容易的找到生意伙伴，创造共赢</string>
+    <string name="excellent_service">拓宽商城渠道，提升服务品质</string>
+    <string name="unify_response">安装成功后，无需再针对客户端进行另外设置，与ECShop进行统一后台管理操作，网站与客户端即可实现实时响应</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="ecmobile_design_introduction">汲取最新设计灵感，基于人性化体验理念，多年客户端经验团队打造，ECMobile更适合当下用户的界面设计和操作流程，不受时间空间限制，给客户以畅快、舒适的购物体验，专享快节奏的移动生活</string>
     <string name="show">显示菜单</string>
+    <string name="smooth_operation_experience">更便捷、流畅的操作体验</string>
     <string name="share">分享 demo</string>
     <string name="paid_time">2014-10-29 15:06:15</string>
     <string name="register_name_digits">._0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLIMNOPQRSTUVWXYZ</string>
     <string name="body_weight_setting_title">Enter your body weight</string>
     <string name="kilograms">kilograms</string>
+    <string name="unify_service">后台统一管理，降低成本</string>
     <string name="pounds">pounds</string>
     <string name="centimeters">centimeters</string>
     <string name="step_length_setting_title">Enter your step length</string>

@@ -25,7 +25,7 @@
         android:shadowColor="#000000"
         android:shadowDy="1"
         android:shadowRadius="5"
-        android:text="呵呵呵cccc"
+        android:text="@string/unify_service"
         android:textColor="#ffffff"
         android:textSize="28dp" />
 
@@ -39,7 +39,7 @@
         android:shadowColor="#000000"
         android:shadowDy="1"
         android:shadowRadius="5"
-        android:text="ccccc"
+        android:text="@string/unify_response"
         android:textColor="#ffffff"
         android:textSize="16dp" />
 

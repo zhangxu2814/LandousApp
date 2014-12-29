@@ -6,7 +6,7 @@
     <TextView
         android:id="@+id/tv_title"
         android:layout_width="fill_parent"
-        android:layout_height="62dp"
+        android:layout_height="45dp"
         android:background="@color/color_titlebg"
         android:gravity="center"
         android:text="购物"
@@ -19,7 +19,7 @@
         android:orientation="horizontal" >
 
         <ListView
-            android:id="@+id/lv_classs1"
+            android:id="@+id/lv_class_left"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1"
@@ -28,18 +28,20 @@
         </ListView>
 
         <ListView
-            android:id="@+id/lv_classs2"
+            android:id="@+id/lv_class_middle"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:layout_weight="1"
+            android:scrollbars="none"
             android:visibility="gone" >
         </ListView>
 
         <ListView
-            android:id="@+id/lv_classs3"
+            android:id="@+id/lv_class_right"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:layout_weight="1"
+            android:scrollbars="none"
             android:visibility="gone" >
         </ListView>
     </LinearLayout>

@@ -9,6 +9,7 @@ import com.zykj.landous.R;
 import com.zykj.landous.Tools.Share;
 import com.zykj.landous.Tools.ToastView;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -23,13 +24,16 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ImageView.ScaleType;
 import android.widget.Toast;
 
 public class B0_IndexFragment extends Fragment implements OnClickListener {
-	// ÂÖ²¥Í¼ start
+	// è½®æ’­å›¾ start
 	private ImageView[] imageViews;
 	private List<View> pageViews;
 	private ImageView imageView;
@@ -40,7 +44,7 @@ public class B0_IndexFragment extends Fragment implements OnClickListener {
 	private AtomicInteger atomicInteger = new AtomicInteger(0);
 	private boolean isContinue = true;
 	/*
-	 * Ã¿¸ô¹Ì¶¨Ê±¼äÇĞ»»¹ã¸æÀ¸Í¼Æ¬
+	 * æ¯éš”å›ºå®šæ—¶é—´åˆ‡æ¢å¹¿å‘Šæ å›¾ç‰‡
 	 */
 	private final Handler viewHandler = new Handler() {
 
@@ -53,48 +57,50 @@ public class B0_IndexFragment extends Fragment implements OnClickListener {
 
 	};
 
-	// ÂÖ²¥Í¼ end
+	// è½®æ’­å›¾ end
 	/**
-	 * ĞİÏĞÊ³Æ·
+	 * ä¼‘é—²é£Ÿå“
 	 */
 	private ImageView iv_leisurefood;
 	/**
-	 * ¼ÒÍ¥Çå½à
+	 * å®¶åº­æ¸…æ´
 	 */
 	private ImageView iv_homecleaners;
 	/**
-	 * ¸öÈËÏ´»¤
+	 * ä¸ªäººæ´—æŠ¤
 	 */
 	private ImageView iv_personalcare;
 	/**
-	 * Éú»îÓÃÆ·
+	 * ç”Ÿæ´»ç”¨å“
 	 */
 	private ImageView iv_supplies;
 	/**
-	 * ¾ÆË®ÒûÁÏ
+	 * é…’æ°´é¥®æ–™
 	 */
 	private ImageView iv_beverages;
 	/**
-	 * ¼ÒÓÃµçÆ÷
+	 * å®¶ç”¨ç”µå™¨
 	 */
 	private ImageView iv_appliance;
 	/**
-	 * Á¸ÓÍµ÷Î¶
+	 * ç²®æ²¹è°ƒå‘³
 	 */
 	private ImageView iv_condiment;
 	/**
-	 * °ì¹«ÀñÆ·
+	 * åŠå…¬ç¤¼å“
 	 */
 	private ImageView iv_officegifts;
-//	/**
-//	 * ·ÖÏí°´Å¥ 
-//	 */
-//	private ImageView iv_share;
-	
-/**
- * ·ÖÏí
- */
+	// /**
+	// * åˆ†äº«æŒ‰é’®
+	// */
+	// private ImageView iv_share;
+
+	/**
+	 * åˆ†äº«
+	 */
 	private LinearLayout ll_share;
+	private EditText search_input;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -110,6 +116,11 @@ public class B0_IndexFragment extends Fragment implements OnClickListener {
 	}
 
 	private void init(View view) {
+		search_input = (EditText) view.findViewById(R.id.search_input);
+		search_input.setImeOptions(EditorInfo.IME_ACTION_SEARCH);
+		search_input.setInputType(EditorInfo.TYPE_CLASS_TEXT);
+		
+		CloseKeyBoard();
 		iv_leisurefood = (ImageView) view.findViewById(R.id.iv_leisurefood);
 		iv_leisurefood.setOnClickListener(this);
 		iv_homecleaners = (ImageView) view.findViewById(R.id.iv_homecleaners);
@@ -126,25 +137,25 @@ public class B0_IndexFragment extends Fragment implements OnClickListener {
 		iv_condiment.setOnClickListener(this);
 		iv_officegifts = (ImageView) view.findViewById(R.id.iv_officegifts);
 		iv_officegifts.setOnClickListener(this);
-//		iv_share=(ImageView)view.findViewById(R.id.iv_share);
-//		iv_share.setOnClickListener(this);
-		ll_share=(LinearLayout)view.findViewById(R.id.ll_share);
+		// iv_share=(ImageView)view.findViewById(R.id.iv_share);
+		// iv_share.setOnClickListener(this);
+		ll_share = (LinearLayout) view.findViewById(R.id.ll_share);
 		ll_share.setOnClickListener(this);
 
-		// ´Ó²¼¾ÖÎÄ¼şÖĞ»ñÈ¡ViewPager¸¸ÈİÆ÷
+		// ä»å¸ƒå±€æ–‡ä»¶ä¸­è·å–ViewPagerçˆ¶å®¹å™¨
 		pagerLayout = (LinearLayout) view.findViewById(R.id.view_pager_content);
-		// ´´½¨ViewPager
+		// åˆ›å»ºViewPager
 		adViewPager = new ViewPager(getActivity());
 
-		// »ñÈ¡ÆÁÄ»ÏñËØÏà¹ØĞÅÏ¢
+		// è·å–å±å¹•åƒç´ ç›¸å…³ä¿¡æ¯
 		DisplayMetrics dm = new DisplayMetrics();
 		getActivity().getWindowManager().getDefaultDisplay().getMetrics(dm);
 
-		// ¸ù¾İÆÁÄ»ĞÅÏ¢ÉèÖÃViewPager¹ã¸æÈİÆ÷µÄ¿í¸ß
+		// æ ¹æ®å±å¹•ä¿¡æ¯è®¾ç½®ViewPagerå¹¿å‘Šå®¹å™¨çš„å®½é«˜
 		adViewPager.setLayoutParams(new LayoutParams(dm.widthPixels,
 				dm.heightPixels * 2 / 9));
 
-		// ½«ViewPagerÈİÆ÷ÉèÖÃµ½²¼¾ÖÎÄ¼ş¸¸ÈİÆ÷ÖĞ
+		// å°†ViewPagerå®¹å™¨è®¾ç½®åˆ°å¸ƒå±€æ–‡ä»¶çˆ¶å®¹å™¨ä¸­
 		pagerLayout.addView(adViewPager);
 		initPageAdapter();
 		initCirclePoint(view);
@@ -178,32 +189,32 @@ public class B0_IndexFragment extends Fragment implements OnClickListener {
 	}
 
 	/**
-	 * ViewPager Ò³Ãæ¸Ä±ä¼àÌıÆ÷
+	 * ViewPager é¡µé¢æ”¹å˜ç›‘å¬å™¨
 	 */
 	private final class AdPageChangeListener implements OnPageChangeListener {
 
 		/**
-		 * Ò³Ãæ¹ö¶¯×´Ì¬·¢Éú¸Ä±äµÄÊ±ºò´¥·¢
+		 * é¡µé¢æ»šåŠ¨çŠ¶æ€å‘ç”Ÿæ”¹å˜çš„æ—¶å€™è§¦å‘
 		 */
 		@Override
 		public void onPageScrollStateChanged(int arg0) {
 		}
 
 		/**
-		 * Ò³Ãæ¹ö¶¯µÄÊ±ºò´¥·¢
+		 * é¡µé¢æ»šåŠ¨çš„æ—¶å€™è§¦å‘
 		 */
 		@Override
 		public void onPageScrolled(int arg0, float arg1, int arg2) {
 		}
 
 		/**
-		 * Ò³ÃæÑ¡ÖĞµÄÊ±ºò´¥·¢
+		 * é¡µé¢é€‰ä¸­çš„æ—¶å€™è§¦å‘
 		 */
 		@Override
 		public void onPageSelected(int arg0) {
-			// »ñÈ¡µ±Ç°ÏÔÊ¾µÄÒ³ÃæÊÇÄÄ¸öÒ³Ãæ
+			// è·å–å½“å‰æ˜¾ç¤ºçš„é¡µé¢æ˜¯å“ªä¸ªé¡µé¢
 			atomicInteger.getAndSet(arg0);
-			// ÖØĞÂÉèÖÃÔ­µã²¼¾Ö¼¯ºÏ
+			// é‡æ–°è®¾ç½®åŸç‚¹å¸ƒå±€é›†åˆ
 			for (int i = 0; i < imageViews.length; i++) {
 				imageViews[arg0]
 						.setBackgroundResource(R.drawable.point_focused);
@@ -219,18 +230,18 @@ public class B0_IndexFragment extends Fragment implements OnClickListener {
 		ViewGroup group = (ViewGroup) view.findViewById(R.id.viewGroup);
 		imageViews = new ImageView[pageViews.size()];
 		for (int i = 0; i < pageViews.size(); i++) {
-			// ´´½¨Ò»¸öImageView, ²¢ÉèÖÃ¿í¸ß. ½«¸Ã¶ÔÏó·ÅÈëµ½Êı×éÖĞ
+			// åˆ›å»ºä¸€ä¸ªImageView, å¹¶è®¾ç½®å®½é«˜. å°†è¯¥å¯¹è±¡æ”¾å…¥åˆ°æ•°ç»„ä¸­
 			imageView = new ImageView(getActivity());
 			imageView.setLayoutParams(new LayoutParams(10, 10));
 			imageViews[i] = imageView;
 
-			// ³õÊ¼Öµ, Ä¬ÈÏµÚ0¸öÑ¡ÖĞ
+			// åˆå§‹å€¼, é»˜è®¤ç¬¬0ä¸ªé€‰ä¸­
 			if (i == 0) {
 				imageViews[i].setBackgroundResource(R.drawable.point_focused);
 			} else {
 				imageViews[i].setBackgroundResource(R.drawable.point_unfocused);
 			}
-			// ½«Ğ¡Ô²µã·ÅÈëµ½²¼¾ÖÖĞ
+			// å°†å°åœ†ç‚¹æ”¾å…¥åˆ°å¸ƒå±€ä¸­
 			group.addView(imageViews[i]);
 		}
 
@@ -262,14 +273,14 @@ public class B0_IndexFragment extends Fragment implements OnClickListener {
 		private List<View> views = null;
 
 		/**
-		 * ³õÊ¼»¯Êı¾İÔ´, ¼´ViewÊı×é
+		 * åˆå§‹åŒ–æ•°æ®æº, å³Viewæ•°ç»„
 		 */
 		public AdPageAdapter(List<View> views) {
 			this.views = views;
 		}
 
 		/**
-		 * ´ÓViewPagerÖĞÉ¾³ı¼¯ºÏÖĞ¶ÔÓ¦Ë÷ÒıµÄView¶ÔÏó
+		 * ä»ViewPagerä¸­åˆ é™¤é›†åˆä¸­å¯¹åº”ç´¢å¼•çš„Viewå¯¹è±¡
 		 */
 		@Override
 		public void destroyItem(View container, int position, Object object) {
@@ -277,7 +288,7 @@ public class B0_IndexFragment extends Fragment implements OnClickListener {
 		}
 
 		/**
-		 * »ñÈ¡ViewPagerµÄ¸öÊı
+		 * è·å–ViewPagerçš„ä¸ªæ•°
 		 */
 		@Override
 		public int getCount() {
@@ -285,7 +296,7 @@ public class B0_IndexFragment extends Fragment implements OnClickListener {
 		}
 
 		/**
-		 * ´ÓView¼¯ºÏÖĞ»ñÈ¡¶ÔÓ¦Ë÷ÒıµÄÔªËØ, ²¢Ìí¼Óµ½ViewPagerÖĞ
+		 * ä»Viewé›†åˆä¸­è·å–å¯¹åº”ç´¢å¼•çš„å…ƒç´ , å¹¶æ·»åŠ åˆ°ViewPagerä¸­
 		 */
 		@Override
 		public Object instantiateItem(View container, int position) {
@@ -294,7 +305,7 @@ public class B0_IndexFragment extends Fragment implements OnClickListener {
 		}
 
 		/**
-		 * ÊÇ·ñ½«ÏÔÊ¾µÄViewPagerÒ³ÃæÓëinstantiateItem·µ»ØµÄ¶ÔÏó½øĞĞ¹ØÁª Õâ¸ö·½·¨ÊÇ±ØĞëÊµÏÖµÄ
+		 * æ˜¯å¦å°†æ˜¾ç¤ºçš„ViewPageré¡µé¢ä¸instantiateItemè¿”å›çš„å¯¹è±¡è¿›è¡Œå…³è” è¿™ä¸ªæ–¹æ³•æ˜¯å¿…é¡»å®ç°çš„
 		 */
 		@Override
 		public boolean isViewFromObject(View view, Object object) {
@@ -306,35 +317,44 @@ public class B0_IndexFragment extends Fragment implements OnClickListener {
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.iv_leisurefood:
-			Toast.makeText(getActivity(), "ĞİÏĞÊ³Æ·", Toast.LENGTH_LONG).show();
+			Toast.makeText(getActivity(), "ä¼‘é—²é£Ÿå“", Toast.LENGTH_LONG).show();
 			break;
 		case R.id.iv_homecleaners:
-			Toast.makeText(getActivity(), "¼ÒÍ¥Çå½à", Toast.LENGTH_LONG).show();
+			Toast.makeText(getActivity(), "å®¶åº­æ¸…æ´", Toast.LENGTH_LONG).show();
 			break;
 		case R.id.iv_personalcare:
-			Toast.makeText(getActivity(), "¸öÈËÏ´»¤", Toast.LENGTH_LONG).show();
+			Toast.makeText(getActivity(), "ä¸ªäººæ´—æŠ¤", Toast.LENGTH_LONG).show();
 			break;
 		case R.id.iv_supplies:
-			Toast.makeText(getActivity(), "Éú»îÓÃÆ·", Toast.LENGTH_LONG).show();
+			Toast.makeText(getActivity(), "ç”Ÿæ´»ç”¨å“", Toast.LENGTH_LONG).show();
 			break;
 		case R.id.iv_beverages:
-			Toast.makeText(getActivity(), "¾ÆË®ÒûÁÏ", Toast.LENGTH_LONG).show();
+			Toast.makeText(getActivity(), "é…’æ°´é¥®æ–™", Toast.LENGTH_LONG).show();
 			break;
 		case R.id.iv_appliance:
-			Toast.makeText(getActivity(), "¼ÒÓÃµçÆ÷", Toast.LENGTH_LONG).show();
+			Toast.makeText(getActivity(), "å®¶ç”¨ç”µå™¨", Toast.LENGTH_LONG).show();
 			break;
 		case R.id.iv_condiment:
-			Toast.makeText(getActivity(), "Á¸ÓÍµ÷Î¶", Toast.LENGTH_LONG).show();
+			Toast.makeText(getActivity(), "ç²®æ²¹è°ƒå‘³", Toast.LENGTH_LONG).show();
 			break;
 		case R.id.iv_officegifts:
-			Toast.makeText(getActivity(), "°ì¹«ÀñÆ·", Toast.LENGTH_LONG).show();
+			Toast.makeText(getActivity(), "åŠå…¬ç¤¼å“", Toast.LENGTH_LONG).show();
 			break;
 		case R.id.ll_share:
-			Share mShare=new Share(getActivity());
+			Share mShare = new Share(getActivity());
 			mShare.show();
 			break;
 		default:
 			break;
 		}
 	}
+
+	// å…³é—­é”®ç›˜
+	public void CloseKeyBoard() {
+		search_input.clearFocus();
+		InputMethodManager imm = (InputMethodManager) getActivity()
+				.getSystemService(Context.INPUT_METHOD_SERVICE);
+		imm.hideSoftInputFromWindow(search_input.getWindowToken(), 0);
+	}
+
 }

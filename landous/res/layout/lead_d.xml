@@ -25,7 +25,7 @@
         android:shadowColor="#000000"
         android:shadowDy="1"
         android:shadowRadius="5"
-        android:text="d'd'd'd"
+        android:text="@string/smooth_operation_experience"
         android:textColor="#ffffff"
         android:textSize="28dp" />
 
@@ -39,7 +39,7 @@
         android:shadowColor="#000000"
         android:shadowDy="1"
         android:shadowRadius="5"
-        android:text="sdddd"
+        android:text="@string/ecmobile_design_introduction"
         android:textColor="#ffffff"
         android:textSize="14dp" />
 

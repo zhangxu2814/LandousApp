@@ -40,7 +40,7 @@
         android:shadowColor="#000000"
         android:shadowDy="1"
         android:shadowRadius="5"
-        android:text="两大主流操作系统"
+        android:text="@string/two_main_os"
         android:textColor="#ffffff"
         android:textSize="28dp" />
 
@@ -54,10 +54,9 @@
         android:shadowColor="#000000"
         android:shadowDy="1"
         android:shadowRadius="5"
-        android:text="为你打造属于你的手机商城"
-        android:gravity="center"
+        android:text="@string/special_app_for_cellphone"
         android:textColor="#ffffff"
-        android:textSize="20dp" />
+        android:textSize="16dp" />
 
     <LinearLayout
         android:layout_width="fill_parent"

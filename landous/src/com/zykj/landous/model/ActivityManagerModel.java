@@ -2,9 +2,10 @@ package com.zykj.landous.model;
 
 import java.util.ArrayList;
 
+import com.BeeFramework.activity.BaseActivity;
+
 import android.content.Context;
 
-import com.zykj.landous.activity.BaseActivity;
 
 public class ActivityManagerModel {
 	public static ArrayList<BaseActivity> liveActivityList = new ArrayList<BaseActivity>();

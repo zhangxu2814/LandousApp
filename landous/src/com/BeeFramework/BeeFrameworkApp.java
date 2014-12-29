@@ -53,6 +53,7 @@ import com.BeeFramework.Utils.CustomExceptionHandler;
 import com.BeeFramework.activity.DebugCancelDialogActivity;
 import com.BeeFramework.activity.DebugTabActivity;
 import com.BeeFramework.view.BeeInjector;
+import com.baidu.frontia.FrontiaApplication;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -63,7 +64,7 @@ import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 import com.zykj.landous.R;
 
 
-public class BeeFrameworkApp extends Application implements OnClickListener{
+public class BeeFrameworkApp extends FrontiaApplication implements OnClickListener{
     private static BeeFrameworkApp instance;
     private ImageView bugImage;
     public Context currContext;

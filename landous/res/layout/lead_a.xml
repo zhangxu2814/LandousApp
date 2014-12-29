@@ -24,7 +24,7 @@
         android:shadowColor="#000000"
         android:shadowDy="1"
         android:shadowRadius="5"
-        android:text="各种商品应有尽有"
+        android:text="@string/easily_get_ecmobile"
         android:textColor="#ffffff"
         android:textSize="28dp" />
 
@@ -38,10 +38,9 @@
         android:shadowColor="#000000"
         android:shadowDy="1"
         android:shadowRadius="5"
-        android:gravity="center"
-        android:text="懒豆商城满足您所有的需求"
+        android:text="@string/no_need_to_change_code"
         android:textColor="#ffffff"
-        android:textSize="20dp" />
+        android:textSize="16dp" />
 
     <LinearLayout
         android:layout_width="fill_parent"

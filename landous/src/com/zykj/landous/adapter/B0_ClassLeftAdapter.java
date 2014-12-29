@@ -1,5 +1,7 @@
 package com.zykj.landous.adapter;
 
+import com.zykj.landous.R;
+
 import android.app.Activity;
 import android.graphics.Color;
 import android.util.DisplayMetrics;
@@ -9,21 +11,17 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-public class ClassAdapter extends BaseAdapter {
+public class B0_ClassLeftAdapter extends BaseAdapter {
 
 	private String[] res;
 	private String[][] str;
 	private Activity context;
 	private int item = -1;
 
-	public ClassAdapter(Activity context, String[][] str) {
-		this.context = context;
-		this.str = str;
-	}
-
-	public ClassAdapter(Activity context, String[] res) {
+	public B0_ClassLeftAdapter(Activity context, String[] res) {
 		this.context = context;
 		this.res = res;
+
 	}
 
 	@Override
@@ -49,14 +47,16 @@ public class ClassAdapter extends BaseAdapter {
 	@Override
 	public View getView(int arg0, View arg1, ViewGroup arg2) {
 		TextView view = new TextView(context);
-		view.setHeight(100);
-		view.setGravity(Gravity.CENTER | Gravity.LEFT);
+		view.setGravity(Gravity.CENTER);
 		DisplayMetrics dm = new DisplayMetrics();
 		context.getWindowManager().getDefaultDisplay().getMetrics(dm);
 		view.setWidth(dm.widthPixels / 3);
 		if (item != -1 && arg0 == item) {
-			view.setBackgroundColor(Color.LTGRAY);
+			view.setBackgroundResource(R.drawable.b0_class_leftbg);
+		} else {
+			view.setBackgroundColor(Color.WHITE);
 		}
+		view.setHeight((dm.heightPixels - 120) / (getCount() + 1));
 		view.setText(this.res[arg0]);
 		return view;
 	}

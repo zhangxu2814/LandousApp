@@ -5,8 +5,32 @@
     android:versionName="1.0" >
 
     <uses-sdk
-         android:minSdkVersion="8"
+        android:minSdkVersion="8"
         android:targetSdkVersion="17" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.BROADCAST_STICKY" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.ACCESS_DOWNLOAD_MANAGER" />
+    <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" />
     <!-- Push service 运行需要的权限 -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
@@ -29,13 +53,21 @@
         android:logo="@drawable/ic_launcher"
         android:screenOrientation="portrait"
         android:theme="@style/AppTheme" >
+        <meta-data
+            android:name="AA_DB_NAME"
+            android:value="ecmobile.db" />
+        <meta-data
+            android:name="AA_DB_VERSION"
+            android:value="4" />
+
         <activity
             android:name="com.zykj.landous.MainActivity"
             android:label="@string/app_name"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
-            android:windowSoftInputMode="stateVisible|adjustPan" >
+            android:windowSoftInputMode="adjustUnspecified|stateHidden"
+             >
         </activity>
         <activity
             android:name="com.zykj.landous.push.PushActivity"
@@ -145,7 +177,7 @@
             android:label="@string/app_name"
             android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" >
         </activity>
-        <activity android:name="com.zykj.landous.activity.StartActivity" >
+        <activity android:name="com.BeeFramework.activity.StartActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -153,13 +185,19 @@
             </intent-filter>
         </activity>
         <!-- 欢迎界面 -->
-        <activity android:name="com.zykj.landous.activity.WelcomeActivity" >
+        <activity
+            android:name="com.zykj.landous.activity.WelcomeActivity"
+            android:screenOrientation="portrait" >
         </activity>
         <!-- 分类列表 -->
-        <activity android:name="com.zykj.landous.activity.ClassifyActivity" >
+        <activity
+            android:name="com.zykj.landous.activity.ClassifyActivity"
+            android:screenOrientation="portrait" >
         </activity>
         <!-- 商品列表 -->
-        <activity android:name="com.zykj.landous.activity.B1_GoodListActivity" >
+        <activity
+            android:name="com.zykj.landous.activity.B1_GoodListActivity"
+            android:screenOrientation="portrait" >
         </activity>
     </application>
 

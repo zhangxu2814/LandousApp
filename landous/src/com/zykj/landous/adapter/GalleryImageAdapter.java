@@ -1,6 +1,17 @@
 package com.zykj.landous.adapter;
-
-import com.zykj.landous.R;
+//
+//                       __
+//                      /\ \   _
+//    ____    ____   ___\ \ \_/ \           _____    ___     ___
+//   / _  \  / __ \ / __ \ \    <     __   /\__  \  / __ \  / __ \
+//  /\ \_\ \/\  __//\  __/\ \ \\ \   /\_\  \/_/  / /\ \_\ \/\ \_\ \
+//  \ \____ \ \____\ \____\\ \_\\_\  \/_/   /\____\\ \____/\ \____/
+//   \/____\ \/____/\/____/ \/_//_/         \/____/ \/___/  \/___/
+//     /\____/
+//     \/___/
+//
+//  Powered by BeeFramework
+//
 
 import android.content.Context;
 import android.os.Handler;
@@ -10,6 +21,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+
+import com.zykj.landous.R;
+
 
 public class GalleryImageAdapter extends PagerAdapter {
 

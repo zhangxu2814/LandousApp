@@ -24,7 +24,7 @@
         android:shadowColor="#000000"
         android:shadowDy="1"
         android:shadowRadius="5"
-        android:text="ddd"
+        android:text="@string/excellent_service"
         android:textColor="#ffffff"
         android:textSize="24dp" />
 
@@ -38,7 +38,7 @@
         android:shadowColor="#000000"
         android:shadowDy="1"
         android:shadowRadius="5"
-        android:text="ddee"
+        android:text="@string/excellent_parter"
         android:textColor="#ffffff"
         android:textSize="16dp" />
 

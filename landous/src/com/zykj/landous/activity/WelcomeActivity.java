@@ -1,10 +1,17 @@
 package com.zykj.landous.activity;
-
-import com.zykj.landous.MainActivity;
-import com.zykj.landous.R;
-import com.zykj.landous.adapter.GalleryImageAdapter;
-import com.zykj.landous.easing.Cubic;
-import com.zykj.landous.easing.Sine;
+//
+//                       __
+//                      /\ \   _
+//    ____    ____   ___\ \ \_/ \           _____    ___     ___
+//   / _  \  / __ \ / __ \ \    <     __   /\__  \  / __ \  / __ \
+//  /\ \_\ \/\  __//\  __/\ \ \\ \   /\_\  \/_/  / /\ \_\ \/\ \_\ \
+//  \ \____ \ \____\ \____\\ \_\\_\  \/_/   /\____\\ \____/\ \____/
+//   \/____\ \/____/\/____/ \/_//_/         \/____/ \/___/  \/___/
+//     /\____/
+//     \/___/
+//
+//  Powered by BeeFramework
+//
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,14 +20,22 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.DisplayMetrics;
 import android.view.GestureDetector;
+import android.view.GestureDetector.OnGestureListener;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.GestureDetector.OnGestureListener;
 import android.view.View.OnTouchListener;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
+
+import com.BeeFramework.activity.BaseActivity;
+import com.zykj.landous.MainActivity;
+import com.zykj.landous.R;
+import com.zykj.landous.adapter.GalleryImageAdapter;
+import com.zykj.landous.easing.Cubic;
+import com.zykj.landous.easing.Sine;
+import com.zykj.landous.fragment.B0_IndexFragment;
 
 
 public class WelcomeActivity extends BaseActivity implements OnGestureListener, OnTouchListener {
@@ -46,6 +61,12 @@ public class WelcomeActivity extends BaseActivity implements OnGestureListener, 
 		shared = getSharedPreferences("userInfo", 0); 
 		editor = shared.edit();
         
+//        boolean isFirstRun = shared.getBoolean("isFirstRun", true);  
+//        if(!isFirstRun) {
+//        	Intent it = new Intent(this,EcmobileMainActivity.class);
+//            startActivity(it);
+//            finish();
+//        }
 
         initLayout();
         backgroundLayout = (FrameLayout)findViewById(R.id.backgroundLayout);
@@ -104,9 +125,9 @@ public class WelcomeActivity extends BaseActivity implements OnGestureListener, 
 			float velocityY) {		
 		if (e1.getX() - e2.getX() > 120) {      
 			if(pager_num == 5) {
-				Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+				Intent intent = new Intent(WelcomeActivity.this,MainActivity.class);
 				startActivity(intent);
-				WelcomeActivity.this.finish();
+				finish();
 				editor.putBoolean("isFirstRun", false);
 	            editor.commit();
 			}
@@ -132,7 +153,7 @@ public class WelcomeActivity extends BaseActivity implements OnGestureListener, 
     void initLayout()
     {
         DisplayMetrics dm = new DisplayMetrics();
-        //���寰�绐���ｅ�����
+        //取得窗口属性
         this.getWindowManager().getDefaultDisplay().getMetrics(dm);
         backgoundWidth = dm.widthPixels*5;
         ViewGroup.LayoutParams layoutParams;
@@ -200,4 +221,3 @@ public class WelcomeActivity extends BaseActivity implements OnGestureListener, 
         layer_image_five.setLayoutParams( frameLayoutParams);
     }
 }
-

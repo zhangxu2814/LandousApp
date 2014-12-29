@@ -16,17 +16,17 @@ import android.widget.TextView;
 import com.zykj.landous.MainActivity;
 import com.zykj.landous.R;
 import com.zykj.landous.activity.B1_GoodListActivity;
-import com.zykj.landous.adapter.ClassAdapter;
+import com.zykj.landous.adapter.B0_ClassLeftAdapter;
+import com.zykj.landous.adapter.B0_ClassMiddle_Adapter;
+import com.zykj.landous.adapter.B0_ClassRightAdapter;
 import com.zykj.landous.classify.LeftViewAdapter;
 import com.zykj.landous.classify.MiddleAdapter;
 
 public class B0_Classify extends Fragment implements OnClickListener {
-	public ListView rightList;
-
-	private ListView lv_class1 = null;
-	private ListView lv_class2 = null;
-	private ListView lv_class3 = null;
-	String cities[][] = new String[][] {
+	private ListView lv_class_left = null;
+	private ListView lv_class_middle = null;
+	private ListView lv_class_right = null;
+	String str_class_two[][] = new String[][] {
 			new String[] { "全部美食", "本帮江浙菜", "川菜", "粤菜", "湘菜", "东北菜", "台湾菜",
 					"新疆/清真", "素菜", "火锅", "自助餐", "小吃快餐", "日本", "韩国料理", "东南亚菜",
 					"西餐", "面包甜点", "其他" },
@@ -60,76 +60,76 @@ public class B0_Classify extends Fragment implements OnClickListener {
 			new String[] { "全部休闲aaa", "咖啡厅", "酒吧", "茶馆", "KTV", "电影院", "游乐游艺",
 					"公园", "景点/郊游", "洗浴", "足浴按摩", "文化艺术", "DIY手工坊", "桌球馆",
 					"桌面游戏" }, };
-	String food[] = new String[] { "休闲食品", "个人洗护", "酒水饮料", "油粮调味", "家庭清洁",
-			"生活日用", "家用电器", "办公礼品" };
-	String str3[][][] = new String[][][] { cities, cities, cities, cities,
-			cities };
+	String str_class_one[] = new String[] { "休闲食品", "个人洗护", "酒水饮料", "油粮调味",
+			"家庭清洁", "生活日用", "家用电器", "办公礼品" };
+	String str_class_three[][][] = new String[][][] { str_class_two,
+			str_class_two, str_class_two, str_class_two, str_class_two };
 	private int one, two;
-	private ClassAdapter ca1;
-	ClassAdapter ca2;
-	ClassAdapter ca3;
+	B0_ClassLeftAdapter class_ada_one;
+	B0_ClassMiddle_Adapter class_ada_two;
+	B0_ClassRightAdapter class_ada_three;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View view = inflater.inflate(R.layout.activity_classify, null);
-		lv_class1 = (ListView) view.findViewById(R.id.lv_classs1);
-		lv_class2 = (ListView) view.findViewById(R.id.lv_classs2);
-		lv_class3 = (ListView) view.findViewById(R.id.lv_classs3);
-		ca1 = new ClassAdapter(getActivity(), food);
-		lv_class1.setAdapter(ca1);
-		lv_class1.setOnItemClickListener(new OnItemClickListener() {
+		View view = inflater.inflate(R.layout.b0_classify, null);
+		lv_class_left = (ListView) view.findViewById(R.id.lv_class_left);
+		lv_class_middle = (ListView) view.findViewById(R.id.lv_class_middle);
+		lv_class_right = (ListView) view.findViewById(R.id.lv_class_right);
+		class_ada_one = new B0_ClassLeftAdapter(getActivity(), str_class_one);
+		lv_class_left.setAdapter(class_ada_one);
+		lv_class_left.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
 
-				ca2 = new ClassAdapter(getActivity(), cities[arg2]);
+				class_ada_two = new B0_ClassMiddle_Adapter(getActivity(),
+						str_class_two[arg2%str_class_two.length]);
 				one = arg2;
-				ca1.setItem(one);
-				ca1.notifyDataSetChanged();
-				lv_class2.setAdapter(ca2);
-				lv_class2.setVisibility(View.VISIBLE);
-				lv_class3.setVisibility(View.GONE);
-				lv_class1.setLayoutParams(new LinearLayout.LayoutParams(
+				class_ada_one.setItem(one);
+				class_ada_one.notifyDataSetChanged();
+				lv_class_middle.setAdapter(class_ada_two);
+				lv_class_middle.setVisibility(View.VISIBLE);
+				lv_class_right.setVisibility(View.GONE);
+				lv_class_left.setLayoutParams(new LinearLayout.LayoutParams(
 						LinearLayout.LayoutParams.MATCH_PARENT,
 						LinearLayout.LayoutParams.MATCH_PARENT, 2));
-				lv_class2.setLayoutParams(new LinearLayout.LayoutParams(
+				lv_class_middle.setLayoutParams(new LinearLayout.LayoutParams(
 						LinearLayout.LayoutParams.MATCH_PARENT,
 						LinearLayout.LayoutParams.MATCH_PARENT, 1));
 			}
 		});
-		lv_class2.setOnItemClickListener(new OnItemClickListener() {
+		lv_class_middle.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
 				two = arg2;
-				ca2.setItem(two);
-				ca2.notifyDataSetChanged();
-				ClassAdapter ca3 = new ClassAdapter(getActivity(),
-						str3[one][two]);
-				lv_class3.setAdapter(ca3);
-				lv_class3.setVisibility(View.VISIBLE);
-				lv_class1.setLayoutParams(new LinearLayout.LayoutParams(
+				class_ada_two.setItem(two);
+				class_ada_two.notifyDataSetChanged();
+				B0_ClassRightAdapter class_ada_three = new B0_ClassRightAdapter(
+						getActivity(), str_class_three[one%str_class_three.length][two%str_class_three.length]);
+				lv_class_right.setAdapter(class_ada_three);
+				lv_class_right.setVisibility(View.VISIBLE);
+				lv_class_left.setLayoutParams(new LinearLayout.LayoutParams(
 						LinearLayout.LayoutParams.MATCH_PARENT,
 						LinearLayout.LayoutParams.MATCH_PARENT, 1));
-				lv_class2.setLayoutParams(new LinearLayout.LayoutParams(
+				lv_class_middle.setLayoutParams(new LinearLayout.LayoutParams(
 						LinearLayout.LayoutParams.MATCH_PARENT,
 						LinearLayout.LayoutParams.MATCH_PARENT, 1));
-				lv_class3.setLayoutParams(new LinearLayout.LayoutParams(
+				lv_class_right.setLayoutParams(new LinearLayout.LayoutParams(
 						LinearLayout.LayoutParams.MATCH_PARENT,
 						LinearLayout.LayoutParams.MATCH_PARENT, 1));
 
 			}
 		});
-		lv_class3.setOnItemClickListener(new OnItemClickListener() {
+		lv_class_right.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
