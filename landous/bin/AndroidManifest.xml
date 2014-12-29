@@ -203,6 +203,14 @@
             android:name="com.zykj.landous.fragment.E0_ProfileFragment"
             android:label="@string/title_activity_e0__profile_fragment" >
         </activity>
+        <activity
+            android:name="com.zykj.landous.fragment.D0_ShopingCartFragment"
+            android:label="@string/title_activity_d0__shoping_cart_fragment" >
+        </activity>
+        <activity
+            android:name="com.zykj.landous.activity.E1_SettingActivity"
+            android:label="@string/title_activity_e1__setting" >
+        </activity>
     </application>
 
 </manifest>
