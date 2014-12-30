@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import android.content.Context;
+import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.BeeFramework.adapter.BeeBaseAdapter;
@@ -70,9 +72,10 @@ public class C1_ShopAdapter extends BeeBaseAdapter {
 	@Override
 	public View getView(final int position, View cellView, ViewGroup parent) {
 		if (cellView == null) {
-			cellView = listContainer.inflate(R.layout.c0_shopsitem, null);
+			cellView = listContainer.inflate(R.layout.c1_shopitem, null);
 		}
-
+		TextView tv_oldprice=(TextView)cellView.findViewById(R.id.tv_oldprice);
+		tv_oldprice.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
 		return cellView;
 
 	}

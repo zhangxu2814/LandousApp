@@ -216,6 +216,9 @@
             android:name="com.zykj.landous.activity.C1_ShopActivity"
             android:screenOrientation="portrait" >
         </activity>
+        <!-- 店铺商品分类 -->
+        <activity android:name="com.zykj.landous.activity.C2_ShopClassActivity" >
+        </activity>
     </application>
 
 </manifest>

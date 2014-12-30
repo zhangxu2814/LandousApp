@@ -1,6 +1,7 @@
 package com.zykj.landous.activity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -24,6 +25,7 @@ public class C1_ShopActivity extends BaseActivity implements
 	private Button btn_collect;
 	private MyListView listview;
 	private C1_ShopAdapter shopAdapter;
+	private Intent it;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +45,7 @@ public class C1_ShopActivity extends BaseActivity implements
 		btn_collect = (Button) findViewById(R.id.btn_collect);
 		btn_collect.setOnClickListener(this);
 		listview = (MyListView) findViewById(R.id.listview);
-		shopAdapter=new C1_ShopAdapter(getApplicationContext(), null);
+		shopAdapter = new C1_ShopAdapter(getApplicationContext(), null);
 		listview.setPullLoadEnable(false);
 		listview.setPullRefreshEnable(true);
 		listview.setXListViewListener(this, 0);
@@ -59,7 +61,8 @@ public class C1_ShopActivity extends BaseActivity implements
 			this.finish();
 			break;
 		case R.id.ll_menu:
-
+			it = new Intent(getApplicationContext(), C2_ShopClassActivity.class);
+			startActivity(it);
 			break;
 		case R.id.btn_collect:
 
