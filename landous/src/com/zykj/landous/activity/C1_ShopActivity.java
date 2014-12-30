@@ -8,9 +8,13 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.BeeFramework.activity.BaseActivity;
+import com.external.maxwin.view.XListView.IXListViewListener;
 import com.zykj.landous.R;
+import com.zykj.landous.adapter.C1_ShopAdapter;
+import com.zykj.landous.view.MyListView;
 
-public class C1_ShopActivity extends BaseActivity implements OnClickListener {
+public class C1_ShopActivity extends BaseActivity implements
+		IXListViewListener, OnClickListener {
 	private LinearLayout ll_back;
 	private LinearLayout ll_menu;
 	private LinearLayout shop;
@@ -18,6 +22,8 @@ public class C1_ShopActivity extends BaseActivity implements OnClickListener {
 	 * 收藏按钮
 	 */
 	private Button btn_collect;
+	private MyListView listview;
+	private C1_ShopAdapter shopAdapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +42,10 @@ public class C1_ShopActivity extends BaseActivity implements OnClickListener {
 		shop.setBackground(null);
 		btn_collect = (Button) findViewById(R.id.btn_collect);
 		btn_collect.setOnClickListener(this);
+		listview = (MyListView) findViewById(R.id.listview);
+		shopAdapter=new C1_ShopAdapter(getApplicationContext(), null);
+		listview.setAdapter(shopAdapter);
+
 	}
 
 	@Override
@@ -53,5 +63,17 @@ public class C1_ShopActivity extends BaseActivity implements OnClickListener {
 		default:
 			break;
 		}
+	}
+
+	@Override
+	public void onRefresh(int id) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void onLoadMore(int id) {
+		// TODO Auto-generated method stub
+
 	}
 }
