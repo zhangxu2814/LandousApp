@@ -13,5 +13,7 @@
     <color name="color_gray">#F4F4F4</color>
     <color name="color_titlebg">#F0F0F0</color>
     <color name="color_class_right">#00EC9F32</color>
+    <color name="color_text_gray">#969696</color>
+    <color name="color_line_gray">#C1BFBF</color>
 
 </resources>

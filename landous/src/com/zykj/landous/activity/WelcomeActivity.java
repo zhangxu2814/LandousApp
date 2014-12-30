@@ -35,7 +35,7 @@ import com.zykj.landous.R;
 import com.zykj.landous.adapter.GalleryImageAdapter;
 import com.zykj.landous.easing.Cubic;
 import com.zykj.landous.easing.Sine;
-import com.zykj.landous.fragment.B0_IndexFragment;
+import com.zykj.landous.fragment.A0_IndexFragment;
 
 
 public class WelcomeActivity extends BaseActivity implements OnGestureListener, OnTouchListener {

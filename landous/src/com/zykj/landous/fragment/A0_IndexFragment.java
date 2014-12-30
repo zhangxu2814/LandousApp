@@ -32,7 +32,7 @@ import android.widget.LinearLayout;
 import android.widget.ImageView.ScaleType;
 import android.widget.Toast;
 
-public class B0_IndexFragment extends Fragment implements OnClickListener {
+public class A0_IndexFragment extends Fragment implements OnClickListener {
 	// 轮播图 start
 	private ImageView[] imageViews;
 	private List<View> pageViews;

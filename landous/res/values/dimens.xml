@@ -24,10 +24,10 @@
     <dimen name="datu_btns_paddingBottom">2px</dimen>
     <dimen name="datu_btn_marginLeft">64px</dimen>
 
+    <!-- Default screen margins, per the Android Design guidelines. -->
 
-        <!-- Default screen margins, per the Android Design guidelines. -->
-
-        <dimen name="list_keep_width">100.0dip</dimen>
-        <dimen name="leftlist_img_width">80.0dip</dimen>
+    <dimen name="list_keep_width">100.0dip</dimen>
+    <dimen name="leftlist_img_width">80.0dip</dimen>
+    <dimen name="title_height">40dp</dimen>
 
 </resources>

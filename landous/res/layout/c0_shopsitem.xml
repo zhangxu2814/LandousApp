@@ -1,0 +1,63 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="70dp"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/shop"
+        android:layout_width="match_parent"
+        android:layout_height="68dp"
+        android:background="@drawable/shopsbg"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:id="@+id/iv_shops"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:scaleType="fitXY"
+            android:layout_margin="10dp"
+            android:layout_weight="4"
+            android:src="@drawable/icon_shops" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/tv_shopname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="秋伦依尚旗舰店"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tv_grade"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="综合评分：4.7"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tv_major"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="主营项目：女士衣服、鞋子、包包"
+                android:textColor="@color/color_text_gray"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:background="@color/color_gray" />
+
+</LinearLayout>

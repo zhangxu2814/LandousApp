@@ -28,8 +28,9 @@ public class MainTabsFrament extends Fragment {
 	private static TextView shopping_cart_num;
 	private static LinearLayout shopping_cart_num_bg;
 
-	B0_IndexFragment homeFragment;
+	A0_IndexFragment homeFragment;
 	B0_Classify classifyFragment;
+	C0_ShopsFragment shopsFragment;
 	D0_ShopingCartFragment shoppingCartFragment;
 	E0_ProfileFragment profileFragment;
 
@@ -108,7 +109,7 @@ public class MainTabsFrament extends Fragment {
 		if (tabName == "tab_one") {
 			homeFragment = null;
 			if (null == homeFragment) {
-				homeFragment = new B0_IndexFragment();
+				homeFragment = new A0_IndexFragment();
 			}
 
 			FragmentTransaction localFragmentTransaction = getFragmentManager()
@@ -145,11 +146,11 @@ public class MainTabsFrament extends Fragment {
 			 this.tab_five.setImageResource(R.drawable.footer_user_icon);
 
 		} else if (tabName == "tab_three") {
-			homeFragment = new B0_IndexFragment();
+			shopsFragment=new C0_ShopsFragment();
 			FragmentTransaction localFragmentTransaction = getFragmentManager()
 					.beginTransaction();
 			localFragmentTransaction.replace(R.id.fragment_container,
-					homeFragment, "tab_three");
+					shopsFragment, "tab_three");
 			localFragmentTransaction.commit();
 
 			this.tab_one.setImageResource(R.drawable.footer_home_icon);

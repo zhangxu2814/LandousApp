@@ -41,6 +41,7 @@ import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 
 import com.zykj.landous.R;
+import com.zykj.landous.activity.C1_ShopActivity;
 import com.zykj.landous.activity.WelcomeActivity;
 
 public class StartActivity extends Activity {
@@ -79,7 +80,9 @@ public class StartActivity extends Activity {
     }
 
     private void redirectto() {
-        Intent intent = new Intent(this,WelcomeActivity.class);
+//        Intent intent = new Intent(this,WelcomeActivity.class);
+    	  Intent intent = new Intent(this,C1_ShopActivity.class);
+      	
         startActivity(intent);
         finish();
     }

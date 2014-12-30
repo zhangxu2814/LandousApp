@@ -211,6 +211,11 @@
             android:name="com.zykj.landous.activity.E1_SettingActivity"
             android:label="@string/title_activity_e1__setting" >
         </activity>
+        <!-- 商铺展示页面 -->
+        <activity
+            android:name="com.zykj.landous.activity.C1_ShopActivity"
+            android:screenOrientation="portrait" >
+        </activity>
     </application>
 
 </manifest>
