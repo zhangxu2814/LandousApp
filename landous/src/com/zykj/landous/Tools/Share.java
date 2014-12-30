@@ -21,15 +21,12 @@ public class Share {
 		mSocialShare.setContext(context);
 		mSocialShare.setClientId(MediaType.QZONE.toString(), "100358052");
 		mSocialShare.setClientId(MediaType.QQFRIEND.toString(), "100358052");
-		mSocialShare.setClientName(MediaType.QQFRIEND.toString(), "°Ù¶È");
-		mSocialShare.setClientId(MediaType.WEIXIN.toString(),
-				"wx329c742cb69b41b8");
-		mImageContent.setTitle("°Ù¶È¿ª·¢ÖĞĞÄ");
-		mImageContent.setContent("»¶Ó­Ê¹ÓÃ°Ù¶ÈÉç»á»¯·ÖÏí×é¼ş£¬Ïà¹ØÎÊÌâÇëÓÊ¼şdev_support@baidu.com");
+		mSocialShare.setClientName(MediaType.QQFRIEND.toString(), "ç™¾åº¦");
+		mSocialShare.setClientId(MediaType.WEIXIN.toString(), "wx329c742cb69b41b8");
+		mImageContent.setTitle("ç™¾åº¦å¼€å‘ä¸­å¿ƒ");
+		mImageContent.setContent("æ¬¢è¿ä½¿ç”¨ç™¾åº¦ç¤¾ä¼šåŒ–åˆ†äº«ç»„ä»¶ï¼Œç›¸å…³é—®é¢˜è¯·é‚®ä»¶dev_support@baidu.com");
 		mImageContent.setLinkUrl("http://developer.baidu.com/");
-		mImageContent
-				.setImageUri(Uri
-						.parse("http://apps.bdimg.com/developer/static/04171450/developer/images/icon/terminal_adapter.png"));
+		mImageContent.setImageUri(Uri.parse("http://apps.bdimg.com/developer/static/04171450/developer/images/icon/terminal_adapter.png"));
 	}
 
 	public void show() {

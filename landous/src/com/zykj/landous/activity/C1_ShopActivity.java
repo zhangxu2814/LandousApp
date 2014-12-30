@@ -44,6 +44,10 @@ public class C1_ShopActivity extends BaseActivity implements
 		btn_collect.setOnClickListener(this);
 		listview = (MyListView) findViewById(R.id.listview);
 		shopAdapter=new C1_ShopAdapter(getApplicationContext(), null);
+		listview.setPullLoadEnable(false);
+		listview.setPullRefreshEnable(true);
+		listview.setXListViewListener(this, 0);
+		listview.setRefreshTime();
 		listview.setAdapter(shopAdapter);
 
 	}

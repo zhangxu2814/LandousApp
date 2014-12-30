@@ -80,8 +80,8 @@ public class StartActivity extends Activity {
     }
 
     private void redirectto() {
-        Intent intent = new Intent(this,WelcomeActivity.class);
-//    	  Intent intent = new Intent(this,C1_ShopActivity.class);
+//        Intent intent = new Intent(this,WelcomeActivity.class);
+    	  Intent intent = new Intent(this,C1_ShopActivity.class);
       	
         startActivity(intent);
         finish();
